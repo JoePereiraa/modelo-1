@@ -1,0 +1,27 @@
+//*Shape - (Formas)
+//Tokens usados para compor formas como cards, botões, inputs... 
+
+//?Border Radius---------------------
+    //default = 0;
+    $borderRadius-full: 9999px;
+    $borderRadius-lg:   15px;
+    $borderRadius-md:   10px;
+    $borderRadius-sm:   5px;
+    $borderRadius-xs:   2.5px;
+//?----------------------------------
+//?Border Width----------------------
+    //default = 0;
+    $borderWidth-thin:   1px;
+    $borderWidth-medium: 1.5px;
+    $borderWidth-thick:  2px;
+    $borderWidth-large:  4px;
+//?----------------------------------
+//?Opacity---------------------------
+    //default = 100%;
+    $opacity-semiOpaque:      90%;
+    $opacity-intense:         75%;
+    $opacity-medium:          50%;
+    $opacity-light:           25%;
+    $opacity-semiTransparent: 10%;
+//?----------------------------------
+

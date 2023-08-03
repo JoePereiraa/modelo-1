@@ -1,0 +1,61 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\
+    @use '../../settings/' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\
+
+.error-404 {
+    height: 764px;
+    @include bg-img('404.jpg');
+    display: grid;
+    place-items: center;
+
+    .box {
+        max-width: 644px;
+        margin-inline: auto;
+        text-align: center;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        h2 {
+            font-size: 45px;
+            color: $primary;
+            font-weight: $fontWeight-bold;
+        }
+        h1 {
+            color: $secondary;
+            font-size: 200px;
+            font-weight: $fontWeight-bold;
+        }
+        h6 {
+            max-width: 482px;
+            font-size: $paragraph-sm;
+            margin-top: $spacing-12;
+        }
+        .btn-primary {
+            margin-top: $spacing-10;
+        }
+    }
+
+    @include breakpoint (mobile) {
+        height: auto;
+        padding: $spacing-3 0;
+
+        .box {
+            h2 {
+                font-size: 35px;
+            }
+            h1 {
+                font-size: 100px;
+                line-height: 100%;
+            }
+            h6 {
+                font-size: $paragraph-xs;
+                margin-top: $spacing-6;
+            }
+            .btn-primary {
+                margin-top: $spacing-5;
+            }
+        }
+    }
+}

@@ -1,0 +1,276 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\
+    @use '../../settings' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\
+
+
+.modal-backdrop.show {
+    opacity: 0.8;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.modal-lg {
+    max-width: 600px;
+}
+
+.modal-content {
+    background: #D9D9D9;
+    border-radius: $borderRadius-lg;
+
+    .closebtn {
+        width: 112px;
+        height: 46px;
+        display: grid;
+        place-items: center;
+        background-color: $primary;
+        border: none;
+        border-radius: $borderRadius-sm;
+        color: $white;
+        cursor: pointer;
+        font-size: $paragraph-xs;
+        font-weight: $fontWeight-semibold;
+        position: absolute;
+        right: $spacing-6;
+        text-shadow: none;
+        top: -20px;
+        z-index: 2;
+        text-transform: uppercase;
+        transition: all 0.5s linear;
+
+        &:hover {
+            background-color: darken($primary, 15%);
+        }
+
+        @media (max-width: 991px) {
+            font-size: 13px;
+            top: -$spacing-6;
+            right: 10px;
+            height: 42px;
+        }
+    }
+    .modal-body {
+        padding: $spacing-9 $spacing-18 $spacing-12;
+        border-radius: $borderRadius-lg;
+        overflow: hidden;
+    
+        &.video {
+            border-radius: 0;
+            min-height: 650px;
+            @media (max-width: 991px) {
+                min-height: 360px;
+            }
+            padding: 0;
+        }
+    
+        iframe {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+
+        .title {
+            color: $gray-900;
+            text-align: center;
+    
+            div {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                row-gap: $spacing-6;
+
+                h2 {
+                    color: $primary;
+                    font-size: $fontSize-6;
+                    font-weight: $fontWeight-bold;
+                    text-transform: uppercase;
+                }
+            }
+            p {
+                font-size: $paragraph-md;
+                line-height: $lineHeight-shorter;
+                font-weight: $fontWeight-medium;
+            }
+        }
+
+        form {    
+            display: flex;
+            flex-direction: column;
+            row-gap: $spacing-5;
+            
+            input {
+                width: 100%;
+                height: 42px;
+                background: $white;
+                border-radius: $borderRadius-sm;
+                padding: $spacing-2 $spacing-4;
+        
+                &::placeholder {
+                    color: $gray-300;
+                }
+            }
+            textarea {
+                &::placeholder {
+                    color: $gray-300;
+                }
+            }
+
+            .btn-modal {
+                width: 100%;
+                height: 56px;
+                background-color: $primary;
+                border-radius: $borderRadius-sm;
+                text-align: center;
+                transition: background-color 0.5s;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                column-gap: $spacing-4;
+
+                i {
+                    font-size: $paragraph-md;
+                    color: $white;
+                }
+
+                .title {
+                    color: $white;
+                    font-size: $paragraph-md;
+                    text-transform: uppercase;
+                    font-weight: $fontWeight-semibold;
+                }
+
+                &:hover {
+                    background-color: darken($primary, 15%);
+                }
+            }
+        }
+    
+        @media (max-width: 991px) {
+            padding: $spacing-5 $spacing-3;
+
+            form {
+                padding: 0 $spacing-3;
+                row-gap: $spacing-3;
+        
+                .btn-modal {
+                    height: 48px;
+                    .title {
+                        font-size: $paragraph-xs;
+                    }
+                }
+    
+                input,
+                textarea {
+                    font-size: 14px;
+                }
+            }
+    
+            .title {
+                div {
+                    row-gap: $spacing-3;
+
+                    h2 {
+                        font-size: $fontSize-5;
+                    }
+                }
+                p {
+                    font-size: $paragraph-sm;
+                }
+            }
+        }
+    }
+    &.budget {
+        .closebtn {
+            background-color: $danger-base;
+
+            &:hover {
+                background-color: $danger-low;
+            }
+        }
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            row-gap: $spacing-5;
+
+            .title {
+        
+                div {
+                    span {
+                        display: grid;
+                        place-items: center;
+                        width: 45px;
+                        height: 45px;
+                        background-color: $danger-base;
+                        border-radius: $borderRadius-full;
+                        margin-inline: auto;
+    
+                        color: $white;
+                        font-size: $fontSize-7;
+                        font-weight: $fontWeight-bold;
+                    }
+                    h2 {
+                        color: $danger-base;
+                    }
+                }
+            }
+            form {         
+                .btn-modal {
+                    background-color: $danger-base;
+    
+                    &:hover {
+                        background-color: darken($danger-base, 15%);
+                    }
+                }
+            }
+        }
+    }
+    &.specialist {
+        .closebtn {
+            background-color: $modalspecialist;
+
+            &:hover {
+                background-color: darken($modalspecialist, 15%);
+            }
+        }
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            row-gap: $spacing-5;
+
+            .title {
+        
+                div {
+                    i {
+                        font-size: $fontSize-7;
+                        color: $modalspecialist;
+                    }
+                    h2 {
+                        color: $modalspecialist;
+                    }
+                }
+            }
+            form {         
+                .btn-modal {
+                    background-color: $modalspecialist;
+                    
+                    
+                    &:hover {
+                        background-color: darken($modalspecialist, 15%);
+                    }
+                }
+            }
+        }
+    }
+
+    @include pseudo (
+        $right: $spacing-18,
+        $bottom: -$spacing-8,
+    ) {
+        width: 0; 
+        height: 0; 
+        border-left: 32px solid transparent;
+        border-right: 32px solid transparent;
+        border-top: 32px solid #D9D9D9;
+    }
+}
+

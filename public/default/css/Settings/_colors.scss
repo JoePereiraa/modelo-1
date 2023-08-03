@@ -1,0 +1,48 @@
+//* Colors - (Cores)
+//Tokens de cores do padrões e personalizadas do projeto.
+
+//?PATTERNS COLORS--------------------
+//Colors Theming (Cores Temas)
+
+$primary:        #274580;
+$secondary:      #150906;
+
+$link:           #FF7742;
+$link-low:       #C95C32;
+
+$whatsapp:       #15B25E;
+$whatsapp-low:   #006535;
+
+$white:          #FFFFFF;
+$black:          #000000;
+$transparent: transparent;
+
+$modalspecialist: #034EA2;
+
+//Gray Shades
+$gray-light:    #F0F0F0;
+$gray-100:      #DCDCDC;
+$gray-200:      #D3D3D3;
+$gray-300:      #C0C0C0;
+$gray-400:      #A9A9A9;
+$gray-500:      #808080;
+$gray-600:      #696969;
+$gray-700:      #4F4F4F;
+$gray-800:      #363636;
+$gray-900:      #1E1E1E;
+
+//SEMANTIC COLORS
+//Success
+$success-light: #04D361;
+$success-base:  #1B873F;
+$success-low:   #051B0D;
+
+//Danger
+$danger-light:  #F75A68;
+$danger-base:   #CC2937;
+$danger-low:    #2D090C;
+
+//Warning
+$warning-light: #FBA94C;
+$warning-base:  #EBA94C;
+$warning-low:   #2E1B06;

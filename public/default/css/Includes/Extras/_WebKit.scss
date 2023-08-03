@@ -1,0 +1,27 @@
+@use '../../settings' as *;
+
+// Firefox----------------------------------------//
+* {                                              //
+    scrollbar-width: thick; /* none | auto  */   //
+    scrollbar-color: $primary transparent;       //
+  }                                              //
+//------------------------------------------------//
+
+// Chrome, Edge, Safari---------------------------//
+  *::-webkit-scrollbar {                        //
+    width: 14px; /* vertical scrollbar */       //
+    height: 14px; /* horizontal scrollbar */    //
+  }                                             //
+                                                //
+  *::-webkit-scrollbar-track {                  //
+    background: transparent;                    //
+  }                                             //
+                                                //
+  *::-webkit-scrollbar-thumb {                  //
+    background: $primary;                       //
+  }                                             //
+                                                //
+  *::-webkit-scrollbar-thumb:hover {            //
+    background: $secondary;                     //
+  }                                             //
+// Chrome, Edge, Safari---------------------------//

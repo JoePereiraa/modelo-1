@@ -1,0 +1,122 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\
+    @use '../../settings/' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\
+
+section.footer {
+    background-color: $primary;
+    padding: $spacing-6 0;
+
+    .content {
+        max-width: 1520px;
+        display: flex;
+        align-items: center;
+        column-gap: $spacing-25;
+
+        .aside {
+            &__contact {
+                display: flex;
+                align-items: center;
+                column-gap: $spacing-5;
+
+                .icons {
+                    display: flex;
+                    column-gap: $spacing-5;
+                    align-items: center;
+                    img {
+                        filter: grayscale(1) brightness(100);
+                    }
+                }
+            }
+            &__search {
+                margin-top: $spacing-4;
+                display: flex;
+                align-items: center;
+                column-gap: $spacing-5;
+
+                .form-search {
+                    background-color: transparent;
+                    border: $borderWidth-thick solid $white;
+
+                    input {
+                        &::placeholder {
+                            color: $white;
+                        }
+                    }
+                    button {
+                        img {
+                            filter: grayscale(1) brightness(100);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    hr {
+        width: 100%;
+        max-width: 1564px;
+        height: 1px;
+        margin-inline: auto;
+        background-color: $white;
+        opacity: $opacity-intense;
+    }
+
+    @include breakpoint (mobile) {
+        padding: $spacing-5 0;
+        margin-bottom: $spacing-11;
+
+        .content {
+            flex-wrap: wrap;
+            justify-content: center;
+            row-gap: $spacing-4;
+
+            .logo {
+                width: 156px;
+            }
+
+            .aside {
+                &__contact {
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    column-gap: $spacing-8;
+                    row-gap: $spacing-3;
+
+                    .icons {
+                        display: flex;
+                        column-gap: $spacing-5;
+                        align-items: center;
+                        img {
+                            filter: grayscale(1) brightness(100);
+                        }
+                    }
+                }
+                &__search {
+                    margin-top: $spacing-4;
+                    display: flex;
+                    align-items: center;
+                    column-gap: $spacing-5;
+
+                    .form-search {
+                        background-color: transparent;
+                        border: $borderWidth-thick solid $white;
+
+                        input {
+                            &::placeholder {
+                                color: $white;
+                            }
+                        }
+                        button {
+                            img {
+                                filter: grayscale(1) brightness(100);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        hr {
+            width: 90%;
+        }
+    }
+}

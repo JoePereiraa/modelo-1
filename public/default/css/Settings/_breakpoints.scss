@@ -1,0 +1,13 @@
+//* Breakpoints
+
+$breakpoints-up: (
+    "mobile": 61.9375em,  //991px   | Mobile
+    "desktop": 62em,      //992px   | Desktop
+    "xlarge": 90em,       //1440px  | Desktop(large)
+);
+
+@mixin breakpoint($size) {
+    @media (max-width: map-get($breakpoints-up, $size)) {
+        @content;
+    }
+}

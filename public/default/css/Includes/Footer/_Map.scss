@@ -1,0 +1,23 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\
+    @use '../../settings/' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\
+
+.map {
+    width: 100%;
+    height: 490px;
+    @include transitionDelay();
+
+    iframe {
+        width: 100%;
+        height: 100%;
+    }
+
+    @include breakpoint(mobile) {
+        width: 100%;
+        height: 250px;
+
+        iframe {
+            width: 100%;
+        }
+    }
+}

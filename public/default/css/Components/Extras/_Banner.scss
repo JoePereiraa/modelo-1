@@ -1,0 +1,134 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\
+    @use '../../settings' as *;
+//\\//\\//\\//\\//\\//\\//\\
+
+section.banner {
+    .banner-slider {
+        .owl-dots {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: $spacing-10;
+        }
+        .owl-nav {
+            width: 90%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+
+            .owl-prev,
+            .owl-next {
+                img {
+                    width: 20px;
+                }
+            }
+        }
+    }
+
+    .item-banner {
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+
+        .image-banner {
+            width: 100%;
+            height: 100%;
+        }
+
+        .content {
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+
+            .texts {
+                max-width: 510px;
+                color: $primary;
+                margin: 0 0 0 auto;
+
+                h1 {
+                    margin: $spacing-4 0;
+                }
+
+                .btn-primary {
+                    min-width: 320px;
+                    margin-top: $spacing-10;
+                }
+            }
+        }
+    }
+
+    @include breakpoint (mobile) {
+        .banner-slider {
+            .owl-dots {
+                bottom: $spacing-2;
+            }
+        }
+        .item-banner {
+            display: block;
+
+            .content {
+                display: none;
+            }
+        }
+    }
+}
+section.s-objective {
+    @include bg-img('home/s-objective.png');
+    padding: $spacing-13 0 $spacing-11;
+
+    .objective {
+        max-width: 1446px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        column-gap: $spacing-9;
+        position: relative;
+
+        .img {
+            position: absolute;
+            left: 0;
+            z-index: 2;
+        }
+
+        h6 {
+            color: $primary;
+            font-size: $paragraph-sm;
+        }
+    }
+
+    @include breakpoint(mobile) {
+        background-image: none;
+        background-color: #F0F0F0;
+        padding: $spacing-5;
+
+        .objective {
+            flex-wrap: wrap;
+            row-gap: $spacing-4;
+            justify-content: center;
+
+            .img {
+                position: relative;
+                left: none;
+                z-index: 2;
+                img {
+                    width: 126px;
+                }
+            }
+
+            h6 {
+                text-align: center;
+            }
+        }
+    }
+}

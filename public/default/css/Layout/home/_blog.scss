@@ -1,0 +1,53 @@
+@import 'Settings';
+
+section.index-blog {
+    padding: $spacing-8 0 108px;
+
+    .blog {
+        max-width: 1185px;
+
+        h2 {
+            text-align: center;
+            color: $primary;
+            margin-bottom: $spacing-5;
+        }
+        .blog-slider {
+            .card-blog {
+                height: 100%;
+            }
+            .owl-stage {
+                align-items: stretch;
+            }
+            .owl-dots {
+                margin: $spacing-7 auto $spacing-10;
+            }
+        }
+        .btn-primary {
+            max-width: 232px;
+            margin-inline: auto;
+            border-radius: 0 $borderRadius-md $borderRadius-sm $borderRadius-sm;
+        }
+    }
+
+    @include breakpoint (mobile) {
+        padding: $spacing-5 0;
+
+        .blog {
+
+            h2 {
+                margin-bottom: $spacing-4;
+            }
+            .blog-slider {
+                .card-blog {
+                    height: 100%;
+                }
+                .owl-stage {
+                    align-items: stretch;
+                }
+                .owl-dots {
+                    margin: $spacing-5 auto;
+                }
+            }
+        }
+    }
+}

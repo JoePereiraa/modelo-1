@@ -1,0 +1,67 @@
+@import 'Settings';
+
+section.index-budget {
+    @include bg-img('home/orcamento.png');
+    padding: $spacing-25 0 $spacing-19;
+
+    .budget {
+
+        form {
+            width: 100%;
+            max-width: 768px;
+
+            .text {
+                &__introduction {
+                    display: flex;
+                    align-items: center;
+                    column-gap: $spacing-5;
+
+                    h2 {
+                        color: $primary;
+                    }
+                }
+                p {
+                    font-size: $paragraph-sm;
+                    margin: $spacing-7 0 $spacing-6;
+                }
+            }
+            .inputs {
+                display: flex;
+                flex-direction: column;
+                row-gap: $spacing-6;
+
+                .btn-primary {
+                    margin-inline: auto;
+                }
+            }
+        }
+    }
+
+    @include breakpoint (mobile) {
+        background-image: none;
+        background-color: #F0F0F0;
+        padding: $spacing-5 0 $spacing-5;
+
+        .budget {
+            form {
+                .text {
+                    &__introduction {
+                        column-gap: $spacing-3;
+                    }
+                    h2 {
+                        br {
+                            display: none;
+                        }
+                    }
+                    p {
+                        font-size: $paragraph-xs;
+                        margin: $spacing-5 0;
+                    }
+                }
+                .inputs {
+                    row-gap: $spacing-4;
+                }
+            }
+        }
+    }
+}

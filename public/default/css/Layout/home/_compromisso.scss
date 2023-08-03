@@ -1,0 +1,75 @@
+@import 'Settings';
+
+section.index-compr {
+    padding: $spacing-12 0 $spacing-6;
+
+    .compr {
+        max-width: 1154px;
+        &--text {
+            text-align: center;
+            color: $primary;
+            margin-bottom: $spacing-10;
+
+            h5 {
+                font-weight: $fontWeight-medium;
+                margin: $spacing-2 0 $spacing-8;
+            }
+            h4 {
+                font-weight: $fontWeight-bold;
+            }
+        }
+        .compr-slider {
+            .card-course {
+                height: 100%;
+            }
+            .owl-nav {
+                width: 115%;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .owl-dots {
+                margin: $spacing-7 auto;
+            }
+            .owl-stage {
+                align-items: stretch;
+            }
+        }
+        .btn-primary {
+            &.tertiary {
+                border-radius: 0 $borderRadius-md $borderRadius-sm $borderRadius-sm;
+                margin-inline: auto;
+            }
+        }
+    }
+
+    @include breakpoint (mobile) {
+        padding: 0 0 $spacing-5;
+
+        .compr {
+            &--text {
+                margin-bottom: $spacing-5;
+
+                h5 {
+                    margin: $spacing-2 0 $spacing-3;
+                }
+            }
+            .compr-slider {
+                .card-course {
+                    margin-inline: auto;
+                }
+                .owl-nav {
+                    width: 100%;
+
+                    img {
+                        filter: grayscale(1) brightness(100);
+                    }
+                }
+                .owl-dots {
+                    margin: $spacing-4 auto;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,72 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\||\\
+@use '../../../settings' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\||\\
+
+section.piel-sell {
+    @include bg-img('pielsana/revenda.png');
+    padding: $spacing-24 0 $spacing-8;
+    background-size: cover;
+
+    .sell {
+
+        form {
+            width: 100%;
+            max-width: 768px;
+
+            .text {
+                &__introduction {
+                    display: flex;
+                    align-items: center;
+                    column-gap: $spacing-5;
+
+                    h2 {
+                        color: $primary;
+                        text-transform: uppercase;
+                        font-weight: $fontWeight-bold;
+                    }
+                }
+                h5 {
+                    margin: $spacing-3 0 $spacing-5;
+                }
+            }
+            .inputs {
+                display: flex;
+                flex-direction: column;
+                row-gap: $spacing-6;
+
+                .btn-primary {
+                    border-radius: $borderRadius-sm;
+                }
+            }
+        }
+    }
+
+    @include breakpoint (mobile) {
+        background-image: none;
+        background-color: #F0F0F0;
+        padding: $spacing-5 0 $spacing-5;
+
+        .sell {
+            form {
+                .text {
+                    &__introduction {
+                        column-gap: $spacing-3;
+                    }
+                    img {
+                        width: 50px;
+                    }
+                    h2 {
+                        font-size: 20px;
+                    }
+                    p {
+                        font-size: $paragraph-xs;
+                        margin: $spacing-5 0;
+                    }
+                }
+                .inputs {
+                    row-gap: $spacing-4;
+                }
+            }
+        }
+    }
+}

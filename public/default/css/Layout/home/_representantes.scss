@@ -1,0 +1,85 @@
+@import 'Settings';
+
+section.index-represen {
+    padding: $spacing-11 0 5rem;
+
+    .represen {
+        &__text {
+            max-width: 696px;
+            color: $primary;
+
+            h2 {
+                text-transform: uppercase;
+                font-weight: $fontWeight-bold;
+            }
+            .logo-p {
+                margin: $spacing-3 0 $spacing-14;
+            }
+            ul {
+                width: 100%;
+                max-width: 696px;
+                list-style: none;
+                padding: $spacing-7 $spacing-7 $spacing-7 $spacing-3;
+                background: linear-gradient(180deg, #F8F8F8 0%, #FFF 100%);
+                box-shadow: 2.3349932793228275e-15px 18px 25px 0px rgba(47, 47, 47, 0.10), 7.264423488613633e-16px 11.863703727722168px 11.863703727722168px 0px #FFF inset, -7.264423488613633e-16px -11.863703727722168px 11.863703727722168px 0px #DEDEDE inset;
+                margin-top: $spacing-8;
+                display: flex;
+                gap: $spacing-5 $spacing-4;
+                flex-wrap: wrap;
+                color: $primary;
+
+                li {
+                    width: 100%;
+                    max-width: 320px;
+                    display: flex;
+                    align-items: center;
+                    column-gap: $spacing-3;
+                    font-size: $paragraph-sm;
+                    font-weight: $fontWeight-medium;
+                }
+            }
+        }
+    }
+
+    @include pseudo (
+        before,
+        $content: url('../image/pseudo/mapa.png'),
+        $right: $spacing-16,
+        $top: $spacing-11
+    );
+
+    @include breakpoint (mobile) {
+        padding: $spacing-5 0;
+
+        .represen {
+            &__text {
+                .logo-p {
+                    margin: $spacing-3 0;
+                    img {
+                        width: 156px;
+                    }
+                }
+                p {
+                    font-size: $paragraph-xs;
+                    br {
+                        display: none;
+                    }
+                }
+                ul {
+                    padding: $spacing-3;
+                    margin-top: $spacing-4;
+                    margin-bottom: 0;
+                    gap: $spacing-3;
+
+                    li {
+                        font-size: $paragraph-xs;
+                    }
+                }
+            }
+        }
+
+        &:before {
+            display: none;
+        }
+    }
+}

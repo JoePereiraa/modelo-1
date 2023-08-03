@@ -1,0 +1,75 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\||\\
+@use '../../../settings' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\||\\
+
+section.about-goals {
+    padding: $spacing-9 0;
+
+    .goals {
+        display: flex;
+        flex-direction: column;
+        row-gap: 110px;
+        position: relative;
+
+        .card-goal {
+            color: $primary;
+            &--title {
+                display: flex;
+                align-items: center;
+                column-gap: $spacing-7;
+                margin-bottom: $spacing-2;
+
+                h5 {
+                    font-size: $heading-h2;
+                    font-weight: $fontWeight-bold;
+                    text-transform: uppercase;
+                }
+
+            }
+            p {
+                font-size: $paragraph-md;
+                font-weight: $fontWeight-semibold;
+            }
+        }
+    }
+
+    @include pseudo(
+        before,
+        $content: url('../image/pseudo/objetivos.png'),
+        $left: 0,
+        $top: 0
+    );
+
+    @include breakpoint (mobile) {
+        padding: $spacing-5 0;
+
+        .goals {
+            row-gap: $spacing-10;
+
+            .card-goal {
+                &--title {
+                    column-gap: $spacing-7;
+
+                    img {
+                        @include imageContent(
+                            $width: 60px,
+                            $height: 40px,
+                            $fit: contain
+                        );
+                    }
+
+                    h5 {
+                        font-size: $mobileHeading-h2;
+                    }
+                }
+                p {
+                    font-size: $paragraph-xs;
+                }
+            }
+        }
+
+        &:before {
+            display: none;
+        }
+    }
+}

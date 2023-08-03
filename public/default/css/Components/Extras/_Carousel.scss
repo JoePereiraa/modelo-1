@@ -1,0 +1,58 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\
+    @use '../../settings/' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\
+
+.owl-carousel {
+    .owl-stage {
+        display: flex;
+        align-items: center;
+    }
+    .owl-dots:not(.disabled) {
+        display: flex;
+        align-items: center;
+        column-gap: $spacing-2;
+        width: 100%;
+        max-width: fit-content;
+        margin-inline: auto;
+
+        .owl-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: $borderRadius-full;
+            background-color: #AEAEAE;
+
+            &:hover,
+            &.active {
+                background-color: $primary;
+            }
+
+            &:first-child:not(.active),
+            &:last-child:not(.active) {
+                width: 6px;
+                height: 6px;
+            }
+        }
+    }
+    .owl-nav:not(.disabled) {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        pointer-events: none;
+        .owl-prev,
+        .owl-next {
+            pointer-events: all;
+            transition: 0.3s linear;
+
+            img {
+                transition: 0.3s linear;
+            }
+
+            &.disabled {
+                visibility: hidden;
+                opacity: 0;
+                pointer-events: none
+            }
+        }
+    }
+}

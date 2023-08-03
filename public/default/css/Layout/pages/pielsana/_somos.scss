@@ -1,0 +1,93 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\||\\
+@use '../../../settings' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\||\\
+
+section.piel-repre {
+    min-height: 794px;
+    padding-bottom: 120px;
+    display: flex;
+    align-items: flex-end;
+
+    .repre {
+        max-width: 1490px;
+
+        &--text {
+            max-width: 1074px;
+            color: $primary;
+
+            h2 {
+                text-transform: uppercase;
+                font-weight: $fontWeight-bold;
+                margin-bottom: $spacing-11;
+            }
+            h5 {
+                font-weight: $fontWeight-medium;
+                position: relative;
+                z-index: 2;
+
+                @include pseudo(
+                    before,
+                    $left: -21%,
+                    $top: 50%
+                ) {
+                    width: 1437px;
+                    height: 184px;
+                    border-radius: 0 35px 35px 0;
+                    background: #EDEDED;
+                    z-index: -1;
+                    transform: translateY(-50%);
+                }
+            }
+        }
+
+        @include pseudo(
+            before,
+            $content: url('../image/pseudo/mapa-2.png'),
+            $right: -$spacing-22,
+            $bottom: -175px
+        ) {
+            z-index: 3;
+        }
+    }
+
+    @include pseudo (
+        before,
+        $content: url('../image/pseudo/somos.png'),
+        $left: $spacing-7,
+        $top: -92px
+    );
+
+    @include breakpoint (mobile) {
+        min-height: auto;
+        padding: $spacing-5 0;
+        display: flex;
+        align-items: center;
+
+        .repre {
+
+            &--text {
+                h2 {
+                    font-size: 21px;
+                    margin-bottom: $spacing-5;
+                }
+                h5 {
+                    font-weight: $fontWeight-medium;
+                    position: relative;
+                    z-index: 2;
+
+                    &:before {
+                        display: none;
+                    }
+                }
+            }
+
+            &:before {
+                display: none;
+            }
+        }
+
+        &::before {
+            display: none;
+        }
+    }
+}

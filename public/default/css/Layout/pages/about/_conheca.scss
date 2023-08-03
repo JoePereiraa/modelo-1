@@ -1,0 +1,92 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\||\\
+@use '../../../settings' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\||\\
+
+section.about-know {
+    @include bg-img('about/conheca.png');
+    padding: $spacing-23 0 132px;
+    background-color: $white;
+
+    .know {
+       .content {
+            max-width: 678px;
+            margin: 0 0 0 auto;
+
+            &--text {
+                text-align: center;
+                color: $primary;
+                margin-bottom: $spacing-10;
+
+                h2 {
+                    font-size: $heading-h1;
+                    text-transform: uppercase;
+
+                    strong {
+                        color: #25A2DC;
+                    }
+                }
+                h4 {
+                    font-size: 27px;
+                }
+            }
+
+            .know-slider {
+                .image-slider {
+                    @include imageContent(
+                        $width: 322px,
+                        $height: 280px
+                    );
+                }
+                .owl-nav {
+                    width: 125%;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+
+                    .owl-prev,
+                    .owl-next {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: $borderRadius-full;
+                        background-color: $white;
+                        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                        display: grid;
+                        place-content: center;
+                    }
+                }
+            }
+       }
+    }
+
+    @include breakpoint (mobile) {
+        padding: $spacing-5 0;
+        background-image: none;
+
+        .know {
+            .content {
+                margin: 0 auto 0 auto;
+
+                &--text {
+                    margin-bottom: $spacing-5;
+
+                    h2 {
+                        font-size: $mobileHeading-h1;
+                    }
+                    h4 {
+                        font-size: $mobileHeading-h4;
+                    }
+                }
+
+                .know-slider {
+                    .image-slider {
+                        margin-inline: auto;
+                    }
+                    .owl-nav {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,58 @@
+@import 'Settings';
+
+section.index-pills {
+    padding: $spacing-13 0 0;
+    @include bg-img('pastilhas.png');
+    background-blend-mode: multiply, normal;
+    mix-blend-mode: normal;
+    box-shadow: 0px -20px 30px rgba(0, 0, 0, 0.25);
+
+    .pills {
+        &__text {
+            max-width: 494px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            row-gap: $spacing-3;
+            color: $white;
+            text-align: center;
+            margin: 0 auto $spacing-11;
+
+            h4 {
+                font-weight: $fontWeight-bold;
+            }
+            p {
+                font-size: $paragraph-sm;
+            }
+        }
+        &__cards {
+            max-width: 1004px;
+            margin-inline: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: $spacing-10;
+        }
+    }
+
+    @include breakpoint (mobile) {
+        padding: $spacing-5 0 0;
+
+        .pills {
+            &__text {
+                margin: 0 auto $spacing-5;
+
+                h4 {
+                    font-weight: $fontWeight-bold;
+                }
+                p {
+                    font-size: $paragraph-xs;
+                    line-height: $lineHeight-shorter;
+                }
+            }
+            &__cards {
+                gap: $spacing-3;
+            }
+        }
+    }
+}

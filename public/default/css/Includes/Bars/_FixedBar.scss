@@ -1,0 +1,88 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\
+@use '../../settings/' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\
+
+section.fixed-bar {
+    position: fixed;
+    bottom: 0;
+    background-color: white;
+    border-top: 1px solid $primary;
+    width: 100%;
+    padding: 10px 80px;
+    z-index: 900;
+    @include transitionDelay(0.5s, all);
+
+    .bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &__contact {
+            display: flex;
+            align-items: center;
+            column-gap: $spacing-12;
+        }
+        &__btns {
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            column-gap: 50px;
+
+            .btn-revendedor {
+                display: flex;
+                align-items: center;
+                column-gap: $spacing-4;
+                padding: $spacing-4 $spacing-6;
+
+                border: $borderWidth-thin solid $primary;
+                border-radius: $borderRadius-lg;
+                transition: 0.5s ease-in-out;
+
+                h5 {
+                    color: $primary;
+                    font-size: $paragraph-sm;
+                    font-weight: $fontWeight-medium;
+                }
+
+                &:hover,
+                &.active {
+                    background-color: $primary;
+
+                    h5 {
+                        color: $white;
+                    }
+                    img {
+                        filter: grayscale(1) brightness(100);
+                    }
+                }
+            }
+
+            &--icons {
+                background-color: $secondary;
+                padding: $spacing-2 $spacing-8;
+                border-radius: $borderRadius-sm;
+                display: flex;
+                align-items: center;
+                column-gap: $spacing-5;
+
+                img {
+                    &:hover {
+                        filter: none;
+                    }
+                }
+            }
+        }
+    }
+
+    .container {
+        max-width: 1200px !important;
+    }
+
+    @include breakpoint(mobile) {
+        display: none;
+    }
+
+    &.hidden {
+        bottom: -100px;
+    }
+}

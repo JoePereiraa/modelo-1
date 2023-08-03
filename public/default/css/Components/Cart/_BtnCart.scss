@@ -1,0 +1,57 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\
+    @use '../../settings/' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\
+
+.btn-cart {
+    width: 53px;
+    height: 53px;
+    padding: $spacing-1;
+    background-color: $white;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+    border-radius: $borderRadius-sm;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include transitionDelay();
+
+    &:has(h6) {
+        column-gap: $spacing-4;
+    }
+
+    h6 {
+        font-size: $paragraph-sm;
+        color: $secondary;
+        font-weight: $fontWeight-bold;
+    }
+
+    img {
+        @include transitionDelay();
+    }
+
+    span {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: $gray-400;
+        border-radius: $borderRadius-full;
+        right: $spacing-1;
+        top: $spacing-2;
+        display: grid;
+        place-content: center;
+        color: $primary;
+        font-weight: $fontWeight-bold;
+        font-family: $paragraph-xxs;
+    }
+
+    &:hover {
+        img {
+            transform: translateY(-1px);
+        }
+    }
+
+    @include breakpoint (mobile) {
+        padding: $spacing-2 $spacing-5;
+    }
+}

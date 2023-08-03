@@ -1,0 +1,37 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\
+    @use '../../settings/' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\
+
+section.header-content {
+    min-height: 298px;
+    background-size: cover;
+    padding: $spacing-8 0;
+
+    .resum {
+        max-width: 800px;
+        color: $white;
+
+        h1 {
+            font-size: 64px;
+        }
+    }
+    //?Variations
+    &.type-2 {
+        height: auto;
+    }
+
+    @include breakpoint (mobile) {
+        min-height: auto;
+        padding: $spacing-5 0;
+
+        .resum {
+
+            h1 {
+                font-size: $mobileHeading-h2;
+            }
+            h5 {
+                font-size: 14px;
+            }
+        }
+    }
+}

@@ -1,0 +1,77 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\
+@use '../../settings/' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\
+
+.card-contact {
+    width: 100%;
+    max-width: 350px;
+    border-radius: $borderRadius-sm;
+    border-radius: 10px;
+    border: $borderWidth-thin solid #D9D9D9;
+    background: $white;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.10);
+    overflow: hidden;
+
+    &--title {
+        background-color: #D9D9D9;
+        padding: $spacing-4 $spacing-15;
+        text-align: center;
+
+        h3 {
+            font-size: 27px;
+            color: $primary;
+            font-weight: $fontWeight-semibold;
+        }
+    }
+    &__content {
+        padding: $spacing-7 $spacing-5 $spacing-11;
+        display: flex;
+        flex-direction: column;
+        row-gap: $spacing-10;
+    }
+    .text-content {
+        text-align: center;
+
+        img {
+            @include imageContent(
+                $width: 218px,
+                $height: 122px,
+                $fit: contain
+            );
+            margin-bottom: $spacing-7;
+        }
+
+        h5 {
+            color: $gray-600;
+        }
+    }
+
+    @include breakpoint (mobile) {
+        max-width: 300px;
+        margin-inline: auto;
+
+        &--title {
+            padding: $spacing-4;
+
+            h3 {
+                font-size: $mobileHeading-h3;
+            }
+        }
+        &__content {
+            padding: $spacing-5;
+            row-gap: $spacing-5;
+        }
+        .text-content {
+            text-align: center;
+
+            img {
+                @include imageContent(
+                    $width: 156px,
+                    $height: 76px,
+                    $fit: contain
+                );
+                margin-bottom: $spacing-5;
+            }
+        }
+    }
+}

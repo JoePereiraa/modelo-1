@@ -1,0 +1,92 @@
+@use '../Settings/breakpoints' as *;
+
+//*Typography - Definições e Tokens de (tamanhos | altura | largura) das tipografias e outros padroes
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+    display: block;
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+    }
+}
+
+//Fonts Sizes
+$fontSize-2 :           0.50rem;     //8px
+$fontSize-3 :           0.75rem;     //12px
+$fontSize-4 :           1rem;        //16px
+$fontSize-5 :           1.25rem;     //20px
+$fontSize-6 :           1.50rem;     //24px
+$fontSize-7 :           1.75rem;     //28px
+$fontSize-8 :           2rem;        //32px
+$fontSize-9 :           2.50rem;     //40px
+$fontSize-10:           3rem;        //48px
+//Fonts Sizes Header - Desktop
+$heading-h1 :           40px;
+$heading-h2 :           30px;
+$heading-h3 :           28px;
+$heading-h4 :           23px;
+$heading-h5 :           20px;
+$heading-h6 :           16px;
+//Fonts Sizes Header - Mobile
+$mobileHeading-h1 :     25px;
+$mobileHeading-h2 :     22px;
+$mobileHeading-h3 :     20px;
+$mobileHeading-h4 :     18px;
+$mobileHeading-h5 :     16px;
+$mobileHeading-h6 :     14px;
+//Paragraphs Sizes
+$paragraph-xxs:         0.75rem;    //12px
+$paragraph-xs :         1rem;       //16px
+$paragraph-sm :         1.125rem;   //18px
+$paragraph-md :         1.25rem;    //20px
+$paragraph-lg :         1.375rem;   //22px
+//Font Weight
+$fontWeight-extralight: 200;
+$fontWeight-light:      300;
+$fontWeight-regular:    400;
+$fontWeight-medium:     500;
+$fontWeight-semibold:   600;
+$fontWeight-bold:       700;
+$fontWeight-extrabold:  900;
+//Line Height
+$lineHeight-none:       100%;
+$lineHeight-shorter:    120%;
+$lineHeight-short:      140%;
+$lineHeight-base:       160%;
+$lineHeight-tall:       180%;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+strong,
+li {
+    margin: 0;
+    font-weight: 400;
+    line-height: 120%;
+}
+strong {font-weight: 700;}
+
+h1 { font-size: $heading-h1;}
+h2 { font-size: $heading-h2;}
+h3 { font-size: $heading-h3;}
+h4 { font-size: $heading-h4;}
+h5 { font-size: $heading-h5;}
+h6 { font-size: $heading-h6;}
+p { font-size:  $paragraph-xs;}
+@include breakpoint (mobile) {
+    h1 { font-size: $mobileHeading-h1;}
+    h2 { font-size: $mobileHeading-h2;}
+    h3 { font-size: $mobileHeading-h3;}
+    h4 { font-size: $mobileHeading-h4;}
+    h5 { font-size: $mobileHeading-h5;}
+    h6 { font-size: $mobileHeading-h6;}
+    p { font-size:  $paragraph-xxs;}
+}
+

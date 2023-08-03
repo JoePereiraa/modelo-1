@@ -1,0 +1,50 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\
+@use '../../settings/' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\
+
+.btn-social {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+
+
+    a {
+        &:hover {
+            img {
+                border-top: 5px solid $secondary;
+                border-bottom: 5px solid $secondary;
+                padding: 10px 0;
+            }
+        }
+    }
+
+    @include breakpoint (mobile) {
+        width: 100%;
+        max-width: 600px;
+        justify-content: space-between;
+        margin-inline: auto;
+    }
+}
+
+.btn-social-2 {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+
+    a {
+        &:hover {
+            img {
+                border-top: 5px solid $secondary;
+                border-bottom: 5px solid $secondary;
+                padding: 10px 0;
+            }
+        }
+    }
+
+    @include breakpoint (mobile) {
+        width: 100%;
+        max-width: 600px;
+        justify-content: space-between;
+        margin-inline: auto;
+    }
+}

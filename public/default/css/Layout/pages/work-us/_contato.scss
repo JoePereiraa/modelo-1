@@ -1,0 +1,63 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\||\\
+@use '../../../settings' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\||\\
+
+section.work-contact {
+    @include bg-img('work/contato.png');
+    background-size: cover;
+    padding: $spacing-15 0 116px;
+
+    .contact {
+        display: flex;
+        justify-content: flex-end;
+
+        form {
+            width: 100%;
+            max-width: 800px;
+
+            h2 {
+                color: $primary;
+                text-transform: uppercase;
+                font-weight: $fontWeight-bold;
+                margin-bottom: $spacing-7;
+            }
+            .inputs {
+                display: flex;
+                flex-direction: column;
+                row-gap: $spacing-6;
+
+                &--cols {
+                    display: flex;
+                    column-gap: $spacing-4;
+                }
+            }
+
+            .btn-primary:last-of-type {
+                &.radius {
+                    max-width: 282px;
+                }
+            }
+        }
+    }
+
+    @include breakpoint (mobile) {
+        background-image: none;
+        padding: $spacing-5 0;
+
+        .contact {
+            form {
+                h2 {
+                    margin-bottom: $spacing-5;
+                }
+                .inputs {
+                    row-gap: $spacing-3;
+
+                    &--cols {
+                        display: flex;
+                        column-gap: $spacing-3;
+                    }
+                }
+            }
+        }
+    }
+}

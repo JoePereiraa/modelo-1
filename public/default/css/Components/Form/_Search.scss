@@ -1,0 +1,79 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\
+    @use '../../settings' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\
+
+.form-search {
+    width: 100%;
+    background-color: $white;
+    border-radius: $borderRadius-sm;
+    border: $borderWidth-thick solid $gray-300;
+    @include transitionDelay();
+
+    .content-form {
+        display: flex;
+        align-items: center;
+        height: 52px;
+        padding-inline: $spacing-6;
+        border-radius: inherit;
+
+        &--seek {
+            width: 100%;
+            background: transparent;
+
+            &::placeholder {
+                color: $gray-500;
+                font-size: $paragraph-sm;
+            }
+            &:focus {
+                outline: none;
+            }
+        }
+
+        &--btn {
+            background-color: $transparent;
+            border: none;
+            outline: none;
+
+
+            img { @include transitionDelay(); }
+
+            &:hover {
+                img {
+                    transform: translateY(-$spacing-1);
+                }
+            }
+        }
+        &:focus-within {
+            border: $borderWidth-thin solid $gray-500;
+        }
+    }
+
+    //?Variations
+    &.type-2 {
+        border: none;
+        background-color: #F1F1F1;
+
+        .content-form {
+            height: 65px;
+            &--seek {
+                &::placeholder {
+                    font-size: $paragraph-sm;
+                }
+            }
+        }
+    }
+
+    @include breakpoint (mobile) {
+        text-align: start;
+
+        .content-form {
+            height: 52px;
+            padding-inline: $spacing-6;
+        }
+        &.type-2 {
+            .content-form {
+                height: 52px;
+            }
+        }
+    }
+}

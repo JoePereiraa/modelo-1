@@ -1,0 +1,184 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\
+    @use '../../settings' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\
+
+.talkDealer-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    column-gap: 140px;
+    margin: 0 auto 0 0;
+
+    .card-contact {
+        max-width: 472px;
+        background-color: #F1F1F1;
+        border-radius: $borderRadius-md;
+        padding: $spacing-12 $spacing-10 $spacing-16;
+
+        display: flex;
+        flex-direction: column;
+        row-gap: $spacing-8;
+
+        .text {
+            display: flex;
+            flex-direction: column;
+            row-gap: $spacing-4;
+            color: $primary;
+
+            h5 {
+                font-weight: $fontWeight-bold;
+            }
+            p {
+                font-weight: $paragraph-sm;
+                line-height: $lineHeight-shorter;
+            }
+        }
+
+        .numbers {
+            display: flex;
+            flex-direction: column;
+            row-gap: $spacing-14;
+        }
+    }
+
+    .talkDealer-form {
+        width: 100%;
+        max-width: 1062px;
+        display: flex;
+        flex-direction: column;
+        row-gap: $spacing-5;
+        background-color: $primary;
+        padding: $spacing-10 $spacing-14 $spacing-15;
+        border-radius: 0 0 0 $spacing-7;
+        background-size: cover;
+
+        .inputs {
+            max-width: 548px;
+            display: flex;
+            flex-direction: column;
+            row-gap: $spacing-5;
+
+            &--cols {
+                display: flex;
+                column-gap: $spacing-7;
+            }
+            .box-file {
+                cursor: pointer;
+                background: $secondary;
+                border-radius: $borderRadius-md $borderRadius-md 30px $borderRadius-md;
+
+                &__content {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+                .name-file {
+                    box-sizing: border-box;
+                    padding: $spacing-3 $spacing-4;
+                    min-height: 43px;
+                    border-radius: $borderRadius-md;
+                    width: 60%;
+                    display: inline-block;
+                    display: flex;
+                    align-items: center;
+
+                    span {
+                        color: $white;
+                        font-size: 14px;
+                    }
+                }
+
+                .btn-primary {
+                    h5 {
+                        font-size: $paragraph-xs;
+                    }
+                }
+            }
+            .btn-primary {
+                max-width: 100%;
+             }
+        }
+    }
+
+    @include breakpoint (mobile) {
+        flex-wrap: wrap;
+        justify-content: center;
+        row-gap: $spacing-4;
+        margin: 0 auto 0;
+
+        .card-contact {
+            max-width: 356px;
+            padding: $spacing-5;
+
+            row-gap: $spacing-5;
+
+            .text {
+                text-align: start;
+                row-gap: $spacing-4;
+
+                h5 {
+                    font-weight: $fontWeight-bold;
+                }
+                p {
+                    font-weight: $paragraph-xs;
+                }
+            }
+
+            .numbers {
+                text-align: start;
+                row-gap: $spacing-6;
+            }
+        }
+
+        .talkDealer-form {
+            text-align: start;
+            row-gap: $spacing-3;
+            padding: $spacing-4;
+            border-radius: 0 0 0 $spacing-7;
+            background-size: cover;
+
+            .inputs {
+                row-gap: $spacing-3;
+
+                &--cols {
+                    column-gap: $spacing-3;
+                }
+                // .box-file {
+                //     cursor: pointer;
+                //     background: $secondary-low;
+                //     border-radius: $borderRadius-md $borderRadius-md 30px $borderRadius-md;
+
+                //     &__content {
+                //         display: flex;
+                //         align-items: center;
+                //         justify-content: space-between;
+                //     }
+                //     .name-file {
+                //         box-sizing: border-box;
+                //         padding: $spacing-3 $spacing-4;
+                //         min-height: 43px;
+                //         border-radius: $borderRadius-md;
+                //         width: 60%;
+                //         display: inline-block;
+                //         display: flex;
+                //         align-items: center;
+
+                //         span {
+                //             color: $white;
+                //             font-size: 14px;
+                //         }
+                //     }
+
+                //     .btn-primary {
+                //         h5 {
+                //             font-size: $paragraph-xs;
+                //         }
+                //     }
+                // }
+                .btn-primary {
+                    max-width: fit-content;
+                }
+            }
+        }
+    }
+}

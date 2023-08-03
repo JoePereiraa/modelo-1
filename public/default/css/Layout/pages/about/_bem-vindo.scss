@@ -1,0 +1,55 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\||\\
+@use '../../../settings' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\||\\
+
+section.about-welcome {
+    padding: $spacing-12 0 $spacing-9;
+
+    .welcome {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        column-gap: $spacing-9;
+
+        .image-big {
+            @include imageContent(
+                $width: 526px,
+                $height: 410px
+            );
+            border-radius: $borderRadius-md;
+        }
+
+        &--text {
+            max-width: 636px;
+            display: flex;
+            flex-direction: column;
+            row-gap: $spacing-7;
+
+            h2 {
+                color: $primary;
+                font-weight: $fontWeight-bold;
+                text-transform: uppercase;
+            }
+        }
+    }
+
+    @include breakpoint (mobile) {
+        padding: $spacing-5 0;
+
+        .welcome {
+            flex-wrap: wrap;
+            row-gap: $spacing-3;
+
+            .image-big {
+                @include imageContent(
+                    $width: 326px,
+                    $height: 210px
+                );
+            }
+
+            &--text {
+                row-gap: $spacing-4;
+            }
+        }
+    }
+}

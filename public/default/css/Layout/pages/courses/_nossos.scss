@@ -1,0 +1,66 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\||\\
+@use '../../../settings' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\||\\
+
+section.course-our {
+    @include bg-img('courses/nossos.png');
+    background-size: cover;
+    padding: $spacing-6 0;
+
+    .our {
+        &__texts {
+            text-align: center;
+            color: $primary;
+            margin-bottom: $spacing-7;
+
+            h2 {
+                text-transform: uppercase;
+                font-weight: $fontWeight-bold;
+                margin-bottom: $spacing-6;
+            }
+        }
+        &__cards {
+            display: flex;
+            justify-content: center;
+            gap: $spacing-3;
+            margin-bottom: $spacing-3;
+
+            &.rest {
+                margin-top: $spacing-3;
+            }
+        }
+        .btn-primary {
+            margin-inline: auto;
+            &.tertiary {
+                border-radius: 0 $borderRadius-md $borderRadius-sm $borderRadius-sm;
+
+                &.active {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    @include breakpoint (mobile) {
+        padding: $spacing-5 0;
+
+        .our {
+            &__texts {
+                margin-bottom: $spacing-5;
+
+                h2 {
+                    margin-bottom: $spacing-3;
+                }
+            }
+            &__cards {
+                flex-wrap: wrap;
+                gap: $spacing-5;
+                margin-bottom: $spacing-5;
+
+                &.rest {
+                    margin-top: $spacing-5;
+                }
+            }
+        }
+    }
+}

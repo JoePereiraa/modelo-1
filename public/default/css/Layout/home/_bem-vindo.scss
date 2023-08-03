@@ -1,0 +1,59 @@
+@import 'Settings';
+
+section.index-welcome {
+    padding: $spacing-25 0;
+
+    .welcome {
+        &__content {
+            max-width: 635px;
+            display: flex;
+            flex-direction: column;
+            row-gap: $spacing-10;
+
+            h2 {
+                color: $primary;
+                font-weight: $fontWeight-bold;
+            }
+
+            .btns {
+                display: flex;
+                align-items: center;
+                column-gap: $spacing-7;
+                margin-top: $spacing-7;
+
+                .btn-primary {
+                    &.tertiary {
+                        border-radius: 0 $borderRadius-md $borderRadius-sm $borderRadius-sm;
+                    }
+                }
+            }
+        }
+    }
+
+    @include pseudo (
+        before,
+        $content: url('../image/gallery/bem-vindo.png'),
+        $right: 103px,
+        $bottom: -6.75rem
+    );
+
+    @include breakpoint (mobile) {
+        padding: $spacing-5 0;
+
+        .welcome {
+            &__content {
+                row-gap: $spacing-5;
+                .btns {
+                    flex-wrap: wrap;
+                    row-gap: $spacing-4;
+                    column-gap: $spacing-5;
+                    margin-top: 0;
+                }
+            }
+        }
+
+        &:before {
+            display: none;
+        }
+    }
+}

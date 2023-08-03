@@ -1,0 +1,108 @@
+@import 'Settings';
+
+section.index-clients {
+    @include bg-img('home/clientes.png');
+    background-size: cover;
+    padding: $spacing-18 0 6.25rem;
+
+    .clients {
+        max-width: 1240px;
+        &--text {
+            text-align: center;
+            color: $primary;
+            margin-bottom: $spacing-9;
+
+            h2 {
+                margin-bottom: $spacing-3;
+            }
+        }
+        .clients-slider {
+            .card-deposition {
+                width: 100%;
+                max-width: 372px;
+                height: 100%;
+                text-align: center;
+
+                .card-image {
+                    width: 100%;
+                    max-width:fit-content;
+                    margin-inline:auto;
+                    margin-bottom: -$spacing-15;
+
+                    img {
+                        border-radius:$borderRadius-sm;
+                        @include imageContent(
+                            $width: 116px,
+                            $height: 124px
+                        );
+                    }
+
+                    @include pseudo (
+                        before,
+                        $content: url('../image/icons/ico_quotation.png'),
+                        $left: -$spacing-8,
+                        $bottom: -$spacing-3
+                    );
+                }
+
+                .card-content {
+                    background-color: $white;
+                    border-radius: $borderRadius-sm;
+                    padding: $spacing-22 $spacing-6 $spacing-7;
+                    height: 100%;
+
+                    h5 {
+                        color: $primary;
+                        font-weight: $fontWeight-bold;
+                    }
+                    h6 {
+                        line-height: 150%;
+                    }
+                }
+            }
+            .owl-nav {
+                width: 110%;
+                position: absolute;
+                top: 60%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .owl-dots {
+                margin-top: $spacing-7;
+            }
+            .owl-stage {
+                align-items: stretch;
+            }
+        }
+    }
+
+    @include breakpoint (mobile) {
+        background-image: none;
+        background-color: #DCEDED;
+        padding: $spacing-5 0;
+
+        .clients {
+            &--text {
+                margin-bottom: $spacing-5;
+                h2 {
+                    font-size: 20px;
+                }
+            }
+            .clients-slider {
+                .card-deposition {
+                    max-width: 340px;
+                    margin-inline: auto;
+                    .card-content {
+                        padding: $spacing-22 $spacing-4 $spacing-4;
+                    }
+                }
+                .owl-nav {
+                    width: 100%;
+                }
+                .owl-dots {
+                    margin-top: $spacing-5;
+                }
+            }
+        }
+    }
+}

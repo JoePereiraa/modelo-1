@@ -1,0 +1,93 @@
+section.doubt-main {
+    padding: $spacing-20 0;
+    @include bg-img('doubt/duvidas.png');
+    background-size: cover;
+
+    .main {
+        display: flex;
+        column-gap: $spacing-9;
+
+        &__content {
+            width: 100%;
+            max-width: 900px;
+
+            h2 {
+                font-size: 35px;
+                color: $primary;
+                font-weight: $fontWeight-semibold;
+                margin-bottom: $spacing-7;
+            }
+            &__cards {
+                display: flex;
+                flex-direction: column;
+                row-gap: $spacing-5;
+            }
+        }
+        form {
+            width: 100%;
+            max-width: 364px;
+            border-radius: $borderRadius-md;
+            border: $borderWidth-thin solid #D9D9D9;
+            background: $white;
+
+            .form-title {
+                background-color: #D9D9D9;
+                padding: $spacing-7 $spacing-16;
+                text-align: center;
+                color: $primary;
+
+                h5 {
+                    font-weight: $fontWeight-bold;
+                    text-transform: uppercase;
+                    margin: $spacing-5 0 $spacing-4;
+                }
+                h6 {
+                    font-size: $paragraph-sm;
+                }
+            }
+            .inputs {
+                padding: $spacing-5 $spacing-10 $spacing-10;
+                display: flex;
+                flex-direction: column;
+                row-gap: $spacing-6;
+
+                .btn-primary {
+                    width: 100%;
+                    max-width: 100%;
+                    border-radius: $borderRadius-sm;
+                }
+            }
+        }
+    }
+
+    @include breakpoint (mobile) {
+        padding: $spacing-5 0;
+
+        .main {
+            flex-wrap: wrap;
+            row-gap: $spacing-5;
+
+            &__content {
+                h2 {
+                    font-size: $mobileHeading-h2;
+                    margin-bottom: $spacing-4;
+                }
+                &__cards {
+                    row-gap: $spacing-3;
+                }
+            }
+            form {
+                .form-title {
+                    padding: $spacing-6;
+                    h5 {
+                        margin: $spacing-5 0 $spacing-4;
+                    }
+                }
+                .inputs {
+                    padding: $spacing-5;
+                    row-gap: $spacing-4;
+                }
+            }
+        }
+    }
+}

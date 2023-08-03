@@ -1,0 +1,79 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\
+    @use '../../settings/' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\
+
+section.talk-now {
+    min-height: 176px;
+    background-image: url('../image/several/talk-now-back.png');
+    display: grid;
+    place-items: center;
+
+    .now {
+        display: flex;
+        align-items: center;
+        column-gap: $spacing-8;
+
+        &__content {
+            display: flex;
+            align-items: center;
+            column-gap: $spacing-17;
+
+            img {
+                width: 182px;
+            }
+            &--text {
+                max-width: 510px;
+                color: $white;
+                display: flex;
+                flex-direction: column;
+                row-gap: $spacing-1;
+
+                h4 {
+                    font-size: $paragraph-md;
+                    font-weight: $fontWeight-extrabold;
+                }
+            }
+        }
+
+        &--contact {
+            display: flex;
+            align-items: center;
+            column-gap: $spacing-16;
+        }
+    }   
+
+    @include breakpoint (mobile) {
+        min-height: auto;
+        padding: $spacing-3;
+        background-size: cover;
+
+        .now {
+            justify-content: center;
+            flex-wrap: wrap;
+            row-gap: $spacing-3;
+
+            &__content {
+                justify-content: center;
+                flex-wrap: wrap;
+                row-gap: $spacing-3;
+
+                img {
+                    width: 152px;
+                }
+                &--text {
+
+                    h4 {
+                        font-size: $paragraph-sm;
+                    }
+                }
+            }
+
+            &--contact {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                row-gap: $spacing-3;
+            }
+        }   
+    }
+}

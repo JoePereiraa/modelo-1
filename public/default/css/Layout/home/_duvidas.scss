@@ -1,0 +1,45 @@
+@import 'Settings';
+
+section.index-doubt {
+    padding: $spacing-8 0;
+    .doubt {
+        max-width: 1024px;
+        background: #FAFAFA;
+        border-radius: $borderRadius-md;
+        box-shadow: 0px 4px 20px 3px rgba(0, 0, 0, 0.10);
+        padding: $spacing-8 $spacing-15 $spacing-15;
+
+        &--text {
+            text-align: center;
+            color: $primary;
+            margin-bottom: $spacing-6;
+
+            h2 {
+                font-weight: $fontWeight-bold;
+                margin-bottom: $spacing-2;
+            }
+            h5 {
+                font-weight: $fontWeight-medium;
+            }
+        }
+        &__answer {
+            display: flex;
+            flex-direction: column;
+            row-gap: $spacing-5;
+        }
+    }
+
+    @include breakpoint (mobile) {
+        padding: $spacing-5 0;
+        .doubt {
+            padding: $spacing-4;
+
+            &--text {
+                margin-bottom: $spacing-4;
+            }
+            &__answer {
+                row-gap: $spacing-3;
+            }
+        }
+    }
+}

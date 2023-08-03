@@ -1,0 +1,73 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\
+    @use '../../settings/' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\
+
+.notfound {
+    width: 100%;
+    color: $primary;
+    font-size: $fontSize-6;
+    padding: $spacing-6;
+    border: $borderWidth-thick solid #dcdcdc;
+    border-radius: $borderRadius-lg;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &--title{
+        max-width: fit-content;
+        background-color: $primary;
+        border-radius: $borderRadius-sm;
+        padding: $spacing-3 $spacing-10;
+        margin-bottom: $spacing-5;
+        position: absolute;
+        top: -$spacing-6;
+        left: $spacing-6;
+
+        h2 {
+            color: $white;
+            font-size: $fontSize-6;
+            font-weight: $fontWeight-bold;
+        }
+    }
+
+    .btn-primary {
+        margin-top: $spacing-4;
+
+        .title{
+            order: 2;
+        }
+        i {
+            order: 1;
+        }
+    }
+    .icon {
+        font-size: 50px;
+    }
+
+    @include breakpoint (mobile) {
+        font-size: $fontSize-6;
+        padding: $spacing-3;
+        margin-top: $spacing-4;
+
+        &--title{
+            padding: $spacing-2 $spacing-5;
+            margin-bottom: $spacing-5;
+            position: absolute;
+
+            h2 {
+                font-size: $fontSize-5;
+                text-align: start;
+            }
+        }
+        div {
+            font-size: $paragraph-sm;
+        }
+        .icon {
+            font-size: 60px;
+            top: -$spacing-6;
+            right: -$spacing-1;
+            rotate: 90deg;
+        }
+    }
+}

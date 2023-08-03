@@ -1,0 +1,13 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\
+@use '../../settings/' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\
+
+.layout-video {
+    display: block;
+
+    video {
+        @include pseudo (
+
+    );
+    }
+}

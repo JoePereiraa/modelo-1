@@ -1,0 +1,76 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\||\\
+@use '../../../settings' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\||\\
+
+section.course-form {
+    @include bg-img('courses/formulario.png');
+    background-position: right;
+    background-color: $white;
+    min-height: 944px;
+    margin-top: -8.25rem;
+    padding: 212px 0 0;
+
+    .form {
+        form {
+            max-width: 588px;
+
+            .form-text {
+                margin-bottom: $spacing-5;
+                h5 {
+                    text-transform: uppercase;
+                }
+                h2 {
+                    color: $primary;
+                    font-weight: $fontWeight-semibold;
+                    font-size: 35px;
+                }
+            }
+            .inputs {
+                display: flex;
+                flex-direction: column;
+                row-gap: $spacing-7;
+
+                .btn-primary {
+                    margin: 0 0 0 auto;
+                    width: 100%;
+                    border-radius: $borderRadius-sm;
+                    max-width: 200px;
+                }
+            }
+        }
+    }
+
+    @include pseudo(
+        before,
+        $content: url('../image/pseudo/course-form.png'),
+        $right: 70px,
+        $top: -43px
+    ) {
+        z-index: 2;
+    }
+
+    @include breakpoint(mobile) {
+        background-image: none;
+        min-height: auto;
+        margin-top: 0;
+        padding: $spacing-5 0;
+
+        .form {
+            form {
+                .form-text {
+                    margin-bottom: $spacing-3;
+                    h2 {
+                        font-size: $mobileHeading-h2;
+                    }
+                }
+                .inputs {
+                    row-gap: $spacing-4;
+                }
+            }
+        }
+
+        &:before {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,34 @@
+//?PROPIEDADES GLOBAIS----------------------------------//
+//Settings
+@forward 'Settings';
+@use './Settings/' as *;
+//Components
+@forward './Components';
+//Includes
+@forward './Includes/';
+//?----------------------------------------------------//
+
+body {
+    overflow-x: hidden;
+
+    main {
+        //Home
+        @import 'layout/home/content';
+
+        //Pages
+        @import 'layout/pages/products/content';
+        @import 'layout/pages/pielsana/content'; //pielsana
+        @import 'layout/pages/doubt/index'; //doubts
+        @import 'layout/pages/blog/content'; //blog
+        @import 'layout/pages/courses/content'; //courses
+        @import 'layout/pages/about/content'; //about
+        @import 'layout/pages/budget/orcamento'; //budget | dealer
+        @import 'layout/pages/contact-us/contato'; //contact us
+        @import 'layout/pages/work-us/content'; //work us
+
+        //Politic | Terms
+        @import 'layout/Politic&Terms';
+    }
+
+    // ?FOOTER
+}

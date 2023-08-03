@@ -1,0 +1,83 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\||\\
+@use '../../../settings' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\||\\
+
+section.about-ours {
+    padding: $spacing-8 0 $spacing-20;
+
+    .ours {
+        .ours-slider {
+            max-width: 1335px;
+            .card-ours{
+                .content {
+                    padding: $spacing-6 $spacing-8;
+                    background-color: #F0F0F0;
+                    border: $borderWidth-thin solid #D9D9D9;
+                    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.10);
+                    border-radius: $borderRadius-sm;
+                    display: flex;
+                    align-items: center;
+                    column-gap: $spacing-13;
+
+                    .image-slider {
+                        @include imageContent(
+                            $width: 320px,
+                            $height: 262px,
+                            $fit: contain
+                        );
+                        background-color: $white;
+                        border-radius: $borderRadius-sm;
+                        border: $borderWidth-thin solid #D9D9D9;
+                        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.10);
+                    }
+                    &--text {
+                        color: $primary;
+
+                        h2 {
+                            font-weight: $fontWeight-bold;
+                            text-transform: uppercase;
+                            margin-bottom: $spacing-7;
+                            margin-left: 112px;
+                        }
+                    }
+                }
+            }
+
+            .owl-nav {
+                width: 110%;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+    }
+
+    @include breakpoint (mobile) {
+        padding: $spacing-5 0;
+
+        .ours {
+            .ours-slider {
+                .card-ours{
+                    .content {
+                        padding: $spacing-4;
+                        flex-wrap: wrap;
+                        row-gap: $spacing-3;
+
+                        &--text {
+                            text-align: center;
+                            h2 {
+                                margin-bottom: $spacing-7;
+                                margin-left: 0;
+                            }
+                        }
+                    }
+                }
+
+                .owl-nav {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

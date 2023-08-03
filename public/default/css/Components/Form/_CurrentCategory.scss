@@ -1,0 +1,129 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\
+    @use '../../settings' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\
+
+.current-category {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: $spacing-3;
+
+    &--title {
+        color: $primary;
+        font-weight: $fontWeight-semibold;
+        font-size: $paragraph-md;
+        text-transform: uppercase;
+    }
+    &__content {
+        display: flex;
+        flex-direction: column;
+        row-gap: $spacing-2;
+
+        .item-category {
+            display: flex;
+            align-items: center;
+            column-gap: $spacing-4;
+            padding: $spacing-2 $spacing-4;
+            cursor: pointer;
+            color: #000;
+            text-transform: uppercase;
+
+            input[type="checkbox"] {
+                display: none;
+            }
+
+            h5 {
+                font-size: $paragraph-sm;
+            }
+
+            &:hover,
+            &.active,
+            &.active-2 {
+                color: #26A3DC;
+            }
+        }
+
+        .indicators {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .price {
+                color: $primary;
+            }
+        }
+        .under {
+            position: relative;
+            height: 5px;
+            margin-bottom: 16px;
+
+            .input-range  {
+                pointer-events: none;
+                user-select: none;
+
+                &::-webkit-slider-thumb {
+                    pointer-events: all !important;
+                    user-select: none;
+                    position: relative;
+                    z-index: 10;
+                    background-color: $primary;
+                }
+                &::-moz-range-thumb {
+                    pointer-events: all !important;
+                    user-select: none;
+                    position: relative;
+                    z-index: 10;
+                    background-color: $primary;
+                }
+
+                &::-ms-thumb {
+                    pointer-events: all !important;
+                    user-select: none;
+                    position: relative;
+                    z-index: 10;
+                    background-color: $primary;
+                }
+
+                &::-ms-track {
+                    pointer-events: all !important;
+                    user-select: none;
+                    position: relative;
+                    z-index: 10;
+                    background-color: $primary;
+                }
+
+                &.type-2 {
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    transform: translateY(12px);
+
+                    &::-webkit-slider-thumb {
+                        background-color: $secondary;
+                    }
+                    &::-moz-range-thumb {
+                        background-color: $secondary;
+                    }
+                    &::-ms-thumb {
+                        background-color: $secondary;
+                    }
+                    &::-ms-track {
+                        background-color: $secondary;
+                    }
+                }
+            }
+        }
+    }
+    @include breakpoint (mobile) {
+        text-align: start;
+        padding: $spacing-3;
+
+        &__content {
+
+            &--item {
+                padding: 0 $spacing-4;
+            }
+        }
+    }
+}

@@ -1,0 +1,45 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\
+    @use '../../settings/' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\
+
+section.breadcrumb {
+    margin-bottom: $spacing-7;
+    font-size: $paragraph-sm;
+    color: $white;
+
+    a {
+        margin: 0 5px;
+        text-transform: lowercase;
+        font-size: $paragraph-sm;
+        color: $white;
+        display: flex;
+        align-items: center;
+
+        &:first-child {
+            margin-left: 0;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &.active {
+            color: #26A3DC;
+        }
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    @include breakpoint (mobile) {
+        padding: 0;
+        font-size: 12px;
+        text-align: start;
+        margin-bottom: $spacing-2;
+
+        a {
+            font-size: 12px;
+        }
+    }
+}

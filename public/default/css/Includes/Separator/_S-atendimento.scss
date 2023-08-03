@@ -1,0 +1,107 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\
+    @use '../../settings/' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\
+
+
+section.s-attendance {
+    @include bg-img('s-atendimento.png');
+    background-size: cover;
+    padding: $spacing-12 0;
+    
+    .attendance {
+        &__cards {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            column-gap: $spacing-13;
+
+            .card-attendance {
+                max-width: 398px;
+                display: flex;
+                align-items: center;
+                column-gap: $spacing-5;
+                @include transitionDelay(0.5s, all, linear);
+
+                .texts {
+                    color: $white;
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: $spacing-2;
+
+                    h2 {
+                        font-size: $paragraph-md;
+                        font-weight: $fontWeight-bold;
+                    }
+                    p {
+                        font-size: $paragraph-sm;
+                    }
+                }
+
+                &:hover {
+                    transform: scale(0.96);
+                }
+            }
+        }
+    }
+
+    &.products {
+        max-width: 1738px;
+        @include bg-img('s-atendimento-2.png');
+        padding: $spacing-3 0 $spacing-5;
+        margin-inline: auto;
+
+        .attendance {
+            &__cards {
+                .card-attendance {
+                    .texts {
+                        color: $primary;
+                    }
+                }
+            }
+        }
+    }
+
+    @include breakpoint (mobile) {
+        padding: $spacing-3 0;
+    
+        .attendance {
+            &__cards {
+                display: flex;
+                row-gap: $spacing-4;
+                column-gap: $spacing-4;
+                align-items: start;
+                justify-content: center;
+
+                .card-attendance {
+                    max-width: 200px;
+                    column-gap: $spacing-4;
+                    flex-direction: column;
+                    row-gap: $spacing-2;
+
+                    img {
+                        width: 62px;
+                    }
+
+                    .texts {
+                        text-align: center;
+                        row-gap: $spacing-2;
+
+                        h2 {
+                            font-size: $paragraph-xs;
+                        }
+                        p {
+                            font-size: 14px;
+                            line-height: $lineHeight-shorter;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.products {
+            @include bg-img('s-atendimento-2.png');
+            background-position: center;
+            padding: $spacing-3 0 $spacing-5;
+        }
+    }
+}

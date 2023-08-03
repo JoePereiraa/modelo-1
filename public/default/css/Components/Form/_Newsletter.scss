@@ -1,0 +1,145 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\
+    @use '../../settings' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\
+
+section.footer-newsletter {
+    background-color: #EDEDED;
+    padding: $spacing-3 0;
+
+    .newsletter {
+        display: flex;
+        align-items: center;
+        column-gap: $spacing-7;
+        justify-content: center;
+
+        &__title {
+            display: flex;
+            align-items: center;
+            column-gap: $spacing-5;
+
+            h3 {
+                color: $primary;
+                font-size: $paragraph-md;
+
+                strong {
+                    font-size: 25px;
+                    font-weight: $fontWeight-bold;
+                    text-transform: uppercase;
+                    display: block;
+                }
+            }
+        }
+        .form-newsletter {
+            display: flex;
+            align-items: center;
+            column-gap: $spacing-12;
+
+            .inputs {
+                display: flex;
+                align-items: center;
+                column-gap: $spacing-10;
+
+                .content {
+                    height: 66px;
+                    background-color: $white;
+                    border-radius: $borderRadius-sm;
+                    padding: $spacing-1 $spacing-2 $spacing-1 $spacing-5;
+                    transition: all 0.5s;
+
+                    display: flex;
+                    align-items: center;
+
+                    &:focus-within {
+                        border: $borderWidth-thin solid $gray-400;
+                    }
+                    .input {
+                        height: 100%;
+
+                        input {
+                            display: block;
+                            background: none;
+                            height: 100%;
+                            width: 502px;
+
+                            &::placeholder {
+                                color: $gray-600;
+                            }
+                        }
+                    }
+                    button {
+                        background-color: $primary;
+                        color: $white;
+                        font-size: $paragraph-sm;
+                        text-transform: uppercase;
+                        padding: $spacing-3 $spacing-8;
+                        border-radius: $borderRadius-sm;
+                        transition: all 0.5s;
+                    }
+                }
+            }
+        }
+
+        @include breakpoint (mobile) {
+            .form-newsletter {
+                flex-wrap: wrap;
+                justify-content: center;
+                row-gap: $spacing-4;
+
+                &__inputs {
+                    flex-wrap: wrap;
+                    row-gap: $spacing-4;
+                    padding-inline: $spacing-4;
+
+                    input {
+                        height: 38px;
+                    }
+                }
+            }
+        }
+    }
+
+    @include breakpoint (mobile) {
+        background-color: #EDEDED;
+        padding: $spacing-3 0;
+
+        .newsletter {
+            flex-wrap: wrap;
+            row-gap: $spacing-4;
+
+            &__title {
+                column-gap: $spacing-4;
+
+                img {
+                    width: 49px;
+                }
+
+                h3 {
+                    font-size: $paragraph-sm;
+
+                    strong {
+                        font-size: $paragraph-lg;
+                    }
+                }
+            }
+            .form-newsletter {
+                .inputs {
+                    flex-wrap: wrap;
+                    row-gap: $spacing-3;
+
+                    .content {
+                        height: 56px;
+                        padding: $spacing-1 $spacing-2 $spacing-1 $spacing-5;
+                        .input {
+                            input {
+                                width: 100%;
+                            }
+                        }
+                        button {
+                            padding: $spacing-2 $spacing-6;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

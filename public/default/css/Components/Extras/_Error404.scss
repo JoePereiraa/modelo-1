@@ -1,0 +1,11 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\
+    @use '../../settings/' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\
+
+.error-404 {
+    height: 100%;
+    h5 {
+        font-size: $fontSize-7;
+        color: $primary;
+    }
+}

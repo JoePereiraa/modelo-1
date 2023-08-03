@@ -1,0 +1,45 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\
+@use '../../../settings/' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\
+section.blog-relation {
+    padding: $spacing-5 0 116px;
+
+    .relation {
+        &--title {
+            text-align: center;
+            color: $primary;
+            text-transform: uppercase;
+            font-weight: $fontWeight-bold;
+            margin-bottom: $spacing-6;
+        }
+        .relations-slider{
+            max-width: 1185px;
+            margin-inline: auto;
+
+            .card-blog {
+                height: 100%;
+            }
+            .owl-dots {
+                margin-top: $spacing-12;
+            }
+            .owl-stage{
+                display: flex;
+                align-items: stretch;
+            }
+        }
+    }
+    @include breakpoint (mobile) {
+        padding: $spacing-5 0;
+
+        .relation {
+            h2 {
+
+            }
+            &__cards {
+                display: flex;
+                justify-content: center;
+                column-gap: $spacing-6;
+            }
+        }
+    }
+}

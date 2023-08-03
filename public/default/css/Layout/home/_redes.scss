@@ -1,0 +1,23 @@
+@import 'Settings';
+
+section.index-networks {
+    @include bg-img('home/redes.png');
+    min-height: 455px;
+    margin-top: -112px;
+    position: relative;
+
+    .texto {
+        position: absolute;
+        bottom: 75px;
+        left: 275px;
+        font-size: 32px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+
+        a {
+            color: black;
+            display: block;
+        }
+    }
+}

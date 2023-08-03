@@ -1,0 +1,127 @@
+section.budget {
+    @include bg-img('contact/contato.png');
+    background-size: cover;
+    padding: $spacing-20 0 110px;
+
+    .bud {
+        max-width: 1394px;
+        display: flex;
+        align-items: flex-start;
+        column-gap: $spacing-22;
+
+        &__content {
+            max-width: 932px;
+
+            form {
+                .form-text {
+                    margin-bottom: $spacing-5;
+
+                    h5 {
+                        color: $black;
+                        text-transform: uppercase;
+                    }
+                    h2 {
+                        color: $primary;
+                        font-size: 35px;
+                        font-weight: $fontWeight-semibold;
+                    }
+                }
+                .inputs {
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: $spacing-7;
+
+                    .min-text {
+                        color: #737272;
+                        font-size: $heading-h5;
+                    }
+                    .btn-primary {
+                        width: 100%;
+                        max-width: 282px;
+                        margin: 0 0 0 auto;
+                    }
+                }
+            }
+        }
+        .extra-content {
+            margin-top: $spacing-8;
+
+            h5 {
+                color: $gray-600;
+                margin-bottom: $spacing-6;
+
+                strong {
+                    font-family: sans-serif;
+                }
+                a {
+                    display: inline;
+                    color: $gray-600;
+                }
+            }
+        }
+        .card-contact {
+            &__content {
+                .btn-time {
+                    margin-inline: auto;
+                }
+            }
+        }
+        .checkboxs {
+            margin-bottom: $spacing-4;
+            h5 {
+                font-size: $heading-h5;
+                font-weight: $fontWeight-bold;
+                color: $primary;
+            }
+
+            &--content {
+                display: flex;
+                flex-wrap: wrap;
+                column-gap: $spacing-12;
+                row-gap: $spacing-7;
+                margin-top: $spacing-4;
+            }
+        }
+    }
+
+    @include breakpoint (mobile) {
+        padding: $spacing-5 0;
+
+        .bud {
+            flex-wrap: wrap;
+            row-gap: $spacing-5;
+
+            &__content {
+
+                form {
+                    .form-text {
+                        margin-bottom: $spacing-3;
+
+                        h2 {
+                            font-size: $mobileHeading-h2;
+                        }
+                    }
+                    .inputs {
+                        row-gap: $spacing-3;
+
+                        .min-text {
+                            font-size: $mobileHeading-h5;
+                        }
+                    }
+                }
+            }
+            .extra-content {
+                margin-top: $spacing-5;
+            }
+            .checkboxs {
+                h5 {
+                    font-size: $mobileHeading-h5;
+                }
+
+                &--content {
+                    row-gap: $spacing-3;
+                }
+            }
+        }
+    }
+}

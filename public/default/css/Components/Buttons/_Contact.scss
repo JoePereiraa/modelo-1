@@ -1,0 +1,215 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\
+    @use '../../settings/' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\
+
+.btn-email,
+.btn-whatsapp,
+.btn-telephone {
+    display: flex;
+    align-items: center;
+    column-gap: $spacing-2;
+    max-width: fit-content;
+
+    img { @include transitionDelay(); }
+
+    h5 {
+        color: $primary;
+        font-weight: $fontWeight-semibold;
+        font-family: 'Poppins';
+
+        span {
+            display: block;
+            text-transform: uppercase;
+            font-weight: $fontWeight-regular;
+            font-size: 14px;
+            font-family: 'Raleway';
+
+            strong {
+                color: $primary;
+            }
+        }
+    }
+
+    &:hover {
+        img {
+            transform: translateY(-$spacing-2);
+        }
+    }
+
+    //Variations
+    &.secondary {
+        h5,strong {
+            color: $white;
+        }
+    }
+    //----------
+
+    //?Mobile
+    @include breakpoint (mobile) {
+        h5 {
+            font-size: 13px;
+
+            strong {
+                display: block;
+                font-size: $paragraph-xxs;
+            }
+        }
+        img {
+            width: 22px;
+        }
+    }
+}
+.btn-email {
+    h5 {
+        font-size: $paragraph-xs;
+        font-weight: $fontWeight-regular;
+    }
+}
+.btn-local {
+    display: flex;
+    align-items: flex-start;
+    column-gap: $spacing-2;
+    max-width: fit-content;
+
+    img { @include transitionDelay(); }
+
+    h5 {
+        color: $primary;
+        font-weight: $fontWeight-regular;
+        font-family: 'Open Sans';
+        font-size: $paragraph-xs;
+
+        span {
+            display: block;
+            text-transform: uppercase;
+            font-size: 14px;
+
+            strong {
+                color: $primary;
+            }
+        }
+    }
+
+    &:hover {
+        img {
+            transform: translateY(-$spacing-2);
+        }
+    }
+    //Variations
+    &.secondary {
+        h5,strong {
+            color: $white;
+        }
+    }
+    //----------
+
+    @include breakpoint (mobile) {
+        h5 {
+            font-size: 14px;
+
+            strong {
+                display: block;
+                font-size: $paragraph-xxs;
+            }
+        }
+        img {
+            width: 22px;
+        }
+    }
+}
+.btn-time {
+    max-width: 200px;
+    display: flex;
+    align-items: baseline;
+    column-gap: $spacing-2;
+
+    h5 {
+        color: $primary;
+        font-size: $heading-h6;
+
+        strong {
+            display: block;
+        }
+
+    }
+    @include breakpoint (mobile) {
+        h5 {
+            font-size: 14px;
+            text-align: start;
+
+            strong {
+                display: block;
+            }
+        }
+    }
+
+    &.secondary {
+        width: 100%;
+        max-width: fit-content;
+
+        h5,strong {
+            color: $white;
+        }
+        br {
+            display: none;
+        }
+    }
+}
+//?Other Types------
+.btn-whatsappContact {
+    height: $spacing-13;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 8px 0px #00000040 inset;
+    border-radius: $borderRadius-lg;
+    padding: $spacing-4 $spacing-6;
+    transition: all 1.5s;
+
+    &__title {
+        color: $white;
+        font-weight: $fontWeight-medium;
+        font-size: $paragraph-sm;
+    }
+
+    &:has(i, img) {
+        column-gap: $spacing-4;
+    }
+    &:hover {
+        box-shadow: none;
+    }
+
+    @include breakpoint (mobile) {
+        height: $spacing-10;
+        border-radius: $borderRadius-md;
+        padding: $spacing-4 $spacing-4;
+
+        &__title {
+            font-size: $paragraph-xs;
+        }
+
+        &:has(i, img) {
+            column-gap: $spacing-3;
+        }
+    }
+}
+.btn-whatsappIcon {
+    height: $spacing-13;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $whatsapp;
+    border-radius: $borderRadius-sm;
+    padding: $spacing-4 $spacing-6;
+    transition: all 1.5s;
+
+    &:hover {
+        box-shadow: none;
+    }
+
+    @include breakpoint (mobile) {
+        height: $spacing-10;
+        border-radius: $borderRadius-md;
+        padding: $spacing-4 $spacing-4;
+    }
+}

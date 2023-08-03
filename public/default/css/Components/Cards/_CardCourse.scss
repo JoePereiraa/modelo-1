@@ -1,0 +1,35 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\
+@use '../../settings/' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\
+.card-course {
+    width: 100%;
+    max-width: 350px;
+    background-color: $primary;
+    border-radius: $borderRadius-sm;
+    padding: $spacing-10 $spacing-13;
+    text-align: center;
+
+    .icon {
+        @include imageContent(
+            $width: 58px,
+            $height: 58px,
+            $fit: contain
+        )
+    }
+
+    &__content {
+        &--title {
+            color: $white;
+            margin: $spacing-5 0 $spacing-8;
+        }
+        .btn-primary {
+            margin-inline: auto;
+        }
+    }
+
+    @include breakpoint (mobile) {
+        max-width: 344px;
+        padding: $spacing-5;
+    }
+}
+

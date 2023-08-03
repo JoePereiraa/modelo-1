@@ -1,0 +1,50 @@
+
+//POLICY | TERMS
+section.terms,
+section.policy {
+    padding: 4rem 0;
+
+    .content {
+        &--text {
+            display: flex;
+            flex-direction: column;
+            row-gap: $spacing-5;
+
+            h4 {
+                font-size: $paragraph-sm;
+                text-transform: uppercase;
+                line-height: $lineHeight-shorter;
+            }
+            h3 {
+                font-size: $paragraph-sm;
+                font-weight: $fontWeight-bold;
+
+                strong {
+                    text-transform: uppercase;
+                }
+            }
+            p {
+                font-size: $paragraph-sm;
+                line-height: $lineHeight-shorter;
+            }
+        }
+    }
+
+    @include breakpoint (mobile) {
+        padding: $spacing-6 0;
+
+        .content {
+            &--text {
+                text-align: start;
+                row-gap: $spacing-3;
+
+                h3 {
+                    font-size: $paragraph-xs;
+                }
+                p {
+                    font-size: $paragraph-xs;
+                }
+            }
+        }
+    }
+}

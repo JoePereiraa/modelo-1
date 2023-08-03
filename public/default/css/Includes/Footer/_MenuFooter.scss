@@ -1,0 +1,63 @@
+//IMPORTS\\//\\//\\//\\//\\//\\//\\
+    @use '../../settings/' as *;
+//\\//\\//\\//\\//\\//\\//\\//\//\\
+
+.menu-footer {
+    margin: $spacing-10 0 $spacing-4;
+
+    .content {
+        width: 100%;
+        margin-inline: auto;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        ul {
+            list-style: none;
+            display: flex;
+            column-gap: $spacing-7;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+
+            li {
+                a {
+                    font-size: $paragraph-sm;
+                    color: $white;
+
+                    &:hover,
+                    &.active {
+                        @include pseudo (
+                            $bottom: -$spacing-1,
+                            $left: 0
+                        ) {
+                            width: 90%;
+                            height: 3px;
+                            background: linear-gradient(90.03deg, $secondary 10.5%, rgba(255, 255, 255, 0) 64.25%);
+                        }
+                    }
+                }
+            }
+        }
+
+        @include breakpoint (mobile) {
+            display: none;
+        }
+    }
+
+    @include breakpoint (mobile) {
+        display: none;
+    }
+}
+.btns-extras-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 136px;
+
+    @include breakpoint (mobile) {
+        column-gap: $spacing-3;
+        padding-inline: $spacing-3;
+    }
+}
