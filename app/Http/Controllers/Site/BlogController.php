@@ -8,143 +8,165 @@ use Illuminate\Http\Request;
 
 class BlogController extends SiteController
 {
-    public function index(Request $request, $uri = '')
-    {
-        //?App Raddar
-        $plugin = new PluginController();
 
-        //Blog Page
-        $plugin->setId(SiteController::BLOG);
-        $page = $plugin->obterCampos();
+    private $blogManager;
+    public function setBlogManager(BlogManager $blogManager) {
+        $this->blogManager = $blogManager;
+    }
 
-        //*Filter
-        $filtro = [];
+    public function index(Request $request, $uri = '') {
+        $this->setBlogManager(new BlogManager);
 
-        if(!empty($uri)) {
-            $category = $plugin->obterInterna($uri, SiteController::BLOG_CATEGORIES);
-            $filtro['category'] = $category['conteudo_id'];
-            $currentCategory = $category['id'];
-            $titleCurrentCategory = $category['titulo'];
-        }
+        $page = $this->blogManager->getPageBlog();
+        $this->blogManager->generateSeoAndBreadcrumb();
+        list($filtro, $currentCategory, $currentTitle) = $this->blogManager->getFilter($uri, $request);
+        $blogCategories = $this->blogManager->getBlogCategories();
 
-        //Blog Categories
-        $plugin->setId(SiteController::BLOG_CATEGORIES);
-        $blogCategories = $plugin->obterInternas([], true, 0, false, 10, 0, ['titulo', 'ASC']);
-
-        //*Search
-        if (!empty($request->busca)) {
-            $search = $request->busca;
-            $filtro['busca'] = str_replace(' ', '%', $search);
-            $titleCurrentCategory = 'Busca por: ' . $search;
-        }
-
-        //Current Page
         $currentPage = !empty($request->page) ? (int)$request->page : 1;
-
-        //Blog Inner
-        $plugin->setId(SiteController::BLOG);
-        $posts = $plugin->obterInternas($filtro, true, 0, true, 4, $currentPage);
-
-        //SEO
-        $this->gerarSeo(SiteController::BLOG);
-
-        //BreadCrumb
-        $plugin->addBreadCrumb(['home', route('home')]);
-        $plugin->addBreadCrumb(['blog', route('blog')]);
-
-            if (!empty($category['titulo'])) {
-                $plugin->addBreadCrumb(
-                    [
-                        $category['titulo'],
-                        route('blog-categoria', ['uri' =>$category['uri']])
-                    ]
-                );
-                $this->setTitle($category['titulo'], 'prepend');
-            }
+        $posts = $this->blogManager->getPostsInternal($filtro, $currentPage);
 
         return view('layout.pages.blog.content.index', [
             'page' => $page,
             'posts' => $posts,
-            'category' => !empty($category) ? $category : [],
+            'category' => $category ?? [],
             'blogCategories' => $blogCategories,
             'currentCategory' => $currentCategory ?? '',
-            'titleCurrentCategory' => $titleCurrentCategory ?? 'Todas as notícias',
+            'currentTitle' => $currentTitle ?? 'Todas as notícias',
             'searchBlog' => !empty($request->busca) ? $request->busca : '',
         ]);
     }
 
-    public function interna($uri = '')
-    {
-        //?App Raddar
-        $plugin = new PluginController();
+    public function inner($uri = '') {
+        $this->setBlogManager(new BlogManager);
 
-        #Redirect
-        if (empty($uri)) {
-            return redirect()->route('blog');
-        }
+        list($post, $category) = $this->blogManager->getPostInternal($uri);
+        $page = $this->blogManager->getPageBlog();
+        $blogCategories = $this->blogManager->getBlogCategories();
 
-        #Post
-        $post = $plugin->obterInterna($uri, SiteController::BLOG);
-        if (empty($post)) {
-            return redirect()->route('blog');
-        }
-        if (!empty($post['category'])) {
-            $category = $plugin->obterInterna(
-                $post['category'],
-                SiteController::BLOG_CATEGORIES,
-                'id'
-            );
-        }
+        $this->blogManager->generateSeoAndBreadcrumbInner($post);
+        $this->blogManager->getFilterInner($post);
 
-        //*Filter
-        $filtro = [];
-            if (!empty($post['category'])) {
-                $category = $plugin->obterInterna($post['category'], SiteController::BLOG_CATEGORIES, 'id');
-
-                if (!empty($category)) {
-                    $currentCategory = $category['id'];
-                    $plugin->addBreadCrumb([
-                        $category['titulo'],
-                        route('blog', ['category' => $category['id']])
-                    ]);
-                    $filtro['category'] = $category['id'];
-                }
-            }
-        #Blog Page
-        $plugin->setId(SiteController::BLOG);
-        $page = $plugin->obterCampos();
-
-        #Blog Categories
-        $plugin->setId(SiteController::BLOG_CATEGORIES);
-        $blogCategories = $plugin->obterInternas([], true, 0, false, 10, 0, ['titulo', 'ASC']);
-
-        #SEO
-        $this->gerarSeo($post['id']);
-
-        #BreadrCrumb
-        $plugin->addBreadCrumb(['home', route('home')]);
-        $plugin->addBreadCrumb(['blog', route('blog')]);
-        $plugin->addBreadCrumb([
-            mb_strtolower($post['titulo'], 'UTF-8'),
-            route('blog-interna', ['uri' => $post['uri']])
-        ]);
-
-        //*Extra Content
-        #Posts Recent
-        $plugin->setId(SiteController::BLOG);
-        $blogRecent = $plugin->obterInternas([], true, 3, false, 3, 0, ['titulo', 'ASC'], true, $post['id']);
-        #Posts Relations
-        $plugin->setId(SiteController::BLOG);
-        $blogRelation = $plugin->obterInternas([], true, 3, false, 9, 0, ['titulo', 'ASC'], true, $post['id']);
+        #Extra content
+        $postsRecent = $this->blogManager->getPostsRecent($post);
+        $blogRelation = $this->blogManager->getPostsRelated($post);
 
         return view('layout.pages.blog.content.inner', [
             'post' => $post,
             'page' => $page,
             'blogCategories' => $blogCategories,
-            'blogRecent' => $blogRecent,
+            'postsRecent' => $postsRecent,
             'blogRelation' => $blogRelation,
             'category' => $category ?? [],
             'currentCategory' => $currentCategory ?? ''
         ]);
+    }
+}
+
+class BlogManager extends SiteController
+{
+
+    #App Raddar
+    private $plugin;
+    public function __construct() {
+        $this->plugin = new PluginController();
+    }
+
+    #Blog
+    public function getPageBlog() {
+        $this->plugin->setId(SiteController::BLOG);
+        return $this->plugin->obterCampos();
+    }
+    #Posts
+    public function getPostsInternal($filtro, $currentPage) {
+        $this->plugin->setId(SiteController::BLOG);
+        return $this->plugin->obterInternas($filtro, true, 0, true, 4, $currentPage);
+    }
+    #Post
+    public function getPostInternal($uri) {
+        if (empty($uri)) {
+            return redirect()->route('blog');
+        }
+
+        $post = $this->plugin->obterInterna($uri, SiteController::BLOG);
+        if (empty($post)) {
+            return redirect()->route('blog');
+        }
+        if (!empty($post['category'])) {
+            $category = $this->plugin->obterInterna($post['category'],SiteController::BLOG_CATEGORIES, 'id');
+        }
+
+        return [$post, $category];
+    }
+    #Categories
+    public function getBlogCategories() {
+        $this->plugin->setId(SiteController::BLOG_CATEGORIES);
+        return $this->plugin->obterInternas([], true, 0, false, 10, 0, ['titulo', 'ASC']);
+    }
+
+    #Filter
+    public function getFilter($uri, $request) {
+        $filtro = [];
+        $currentCategory = null;
+        $currentTitle = null;
+
+        if(!empty($uri)) {
+            $category = $this->plugin->obterInterna($uri, SiteController::BLOG_CATEGORIES);
+            $filtro['category'] = $category['conteudo_id'];
+            $currentCategory = $category['id'];
+            $currentTitle = $category['titulo'];
+
+            #Breadcrumb
+            $this->plugin->addBreadCrumb([$category['titulo'], route('blog-categoria', ['uri' =>$category['uri']])]);
+            $this->setTitle($category['titulo'], 'prepend');
+        }
+
+        #Search
+        if (!empty($request->busca)) {
+            $search = $request->busca;
+            $filtro['busca'] = str_replace(' ', '%', $search);
+            $currentTitle = 'Busca por: ' . $search;
+        }
+
+        return [$filtro, $currentCategory, $currentTitle];
+    }
+    public function getFilterInner($post) {
+        $filtro = [];
+        $currentCategory = null;
+
+        if (!empty($post['category'])) {
+            $category = $this->plugin->obterInterna($post['category'], SiteController::BLOG_CATEGORIES, 'id');
+
+            if (!empty($category)) {
+                $currentCategory = $category['id'];
+                $this->plugin->addBreadCrumb([$category['titulo'], route('blog', ['category' => $category['id']])]);
+                $filtro['category'] = $category['id'];
+            }
+        }
+        $this->plugin->addBreadCrumb([$post['titulo'], 'UTF-8', route('blog-interna', ['uri' => $post['uri']])]);
+
+        return [$filtro, $currentCategory];
+    }
+
+    #SEO and Breadcrumb
+    public function generateSeoAndBreadcrumb() {
+        $this->gerarSeo(SiteController::BLOG);
+        $this->plugin->addBreadCrumb(['home', route('home')]);
+        $this->plugin->addBreadCrumb(['blog', route('blog')]);
+    }
+    public function generateSeoAndBreadcrumbInner($post) {
+        $this->gerarSeo($post['id']);
+        $this->plugin->addBreadCrumb(['home', route('home')]);
+        $this->plugin->addBreadCrumb(['blog', route('blog')]);
+    }
+
+    #Recent Posts
+    public function getPostsRecent($post) {
+        $this->plugin->setId(SiteController::BLOG);
+        $this->plugin->obterInternas([], true, 3, false, 3, 0, ['titulo', 'ASC'], true, $post['id']);
+    }
+    #Related Posts
+    public function getPostsRelated($post) {
+        $this->plugin->setId(SiteController::BLOG);
+        return $this->plugin->obterInternas([], true, 3, false, 9, 0, ['titulo', 'ASC'], true, $post['id']);
     }
 }

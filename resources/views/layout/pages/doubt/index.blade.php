@@ -23,7 +23,7 @@
             >
                 <h6>Dúvidas Gerais</h6>
             </x-buttons.link>
-            @foreach($doubtCategory as $key => $cat)
+            @foreach($doubtCategories as $key => $cat)
                 <a
                     href="{{route('duvidas', ['uri' => $cat['uri']])}}"
                     {{-- class="item-category" --}}

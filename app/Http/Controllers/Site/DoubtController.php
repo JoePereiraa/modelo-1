@@ -8,35 +8,41 @@ use Illuminate\Http\Request;
 
 class DoubtController extends SiteController
 {
-    #App Raddar
-    private $plugin;
-    public function setPlugin(PluginController $plugin) {
-        $this->plugin = $plugin;
+    private $doubtManager;
+    public function setdoubtManager(DoubtManager $doubtManager) {
+        $this->doubtManager = $doubtManager;
     }
 
     public function index(Request $request, $category = '') {
+        $this->setdoubtManager(new DoubtManager);
 
-        $this->setplugin(new PluginController);
+        $page = $this->doubtManager->getPageDoubt();
+        $this->doubtManager->generateSeoAndBreadcrumb();
 
-        $page = $this->getPageDoubt();
-        $this->generateSeoAndBreadcrumb();
-
-        list($filtro, $currentCategory, $currentTitle) = $this->getFilter($category, $request);
-        $doubtCategory = $this->getDoubtCategories();
-        $doubts = $this->getDoubtsInternal($filtro);
+        list($filtro, $currentCategory, $currentTitle) = $this->doubtManager->getFilter($category, $request);
+        $doubtCategories = $this->doubtManager->getDoubtCategories();
+        $doubts = $this->doubtManager->getDoubtsInternal($filtro);
 
         #Extra content
-        $home = $this->getHome();
+        $home = $this->doubtManager->getHome();
 
         return view('layout.pages.doubt.content.index', [
             'page' => $page,
             'doubts' => $doubts,
             'category' => $category ?? [],
-            'doubtCategory' => $doubtCategory,
+            'doubtCategories' => $doubtCategories,
             'currentCategory' => $currentCategory,
             'currentTitle' => $currentTitle ?? 'Duvidas Gerais',
             'home' => $home
         ]);
+    }
+
+}
+class DoubtManager extends SiteController
+{
+    private $plugin;
+    public function __construct() {
+        $this->plugin = new PluginController();
     }
 
     #Doubt Page
@@ -51,7 +57,7 @@ class DoubtController extends SiteController
         return $this->plugin->obterInternas($filtro, true, 0, false, 10, 0, ['ordem', 'ASC']);
     }
 
-    #Doubt Categories
+    #Categories
     public function getDoubtCategories() {
         $this->plugin->setId(SiteController::DOUBT_CATEGORIES);
         return $this->plugin->obterInternas([], true, 0, false, 10, 0, ['titulo', 'ASC']);

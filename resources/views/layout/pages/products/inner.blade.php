@@ -23,10 +23,10 @@
         <div class="inner__content">
             <div class="product-info">
                 <div class="gallery">
-                    @if (!empty ($produto['gallery']))
+                    @if (!empty ($product['gallery']))
                     <div class="image-big">
                         <x-layout.carousel carouselName="product-inner-slider">
-                            @foreach ($produto['gallery'] as $image)
+                            @foreach ($product['gallery'] as $image)
                             <a href="{{ $image['url'] }}" data-lightbox="product-inner-gallery">
                                 {!! $helpers->gerarImg($image, true, 'image-product', false) ?? '' !!}
                             </a>
@@ -34,7 +34,7 @@
                         </x-layout.carousel>
                     </div>
                     <div class="mini-images">
-                        @foreach(array_slice($produto['gallery'], 0, 3) as $key => $img)
+                        @foreach(array_slice($product['gallery'], 0, 3) as $key => $img)
                         <a ng-click="alterarImgPrincipal({{$key}}, '.product-inner-slider')">
                             {!! $helpers->gerarImg($img, true, '', false) !!}
                         </a>
@@ -43,27 +43,27 @@
                     @endif
                 </div>
                 <div class="infos">
-                    <h2>{{ $produto['titulo'] ?? '' }}</h2>
-                    <h5 class="my-3">{{ $produto['size'] ?? '' }}</h5>
-                    <h6>{{ $produto['quant'] ?? '' }}</h6>
+                    <h2>{{ $product['titulo'] ?? '' }}</h2>
+                    <h5 class="my-3">{{ $product['size'] ?? '' }}</h5>
+                    <h6>{{ $product['quant'] ?? '' }}</h6>
                     <hr>
                     <div class="infos--btns">
                         <h2>Preço sob consulta</h2>
-                        <x-buttons.primary variation="budget" text="orçamento rápido" icon="ico_budget.png" modalType="orcamento" ng-click="setAssunto('{{addslashes($produto['titulo'])}}')" />
+                        <x-buttons.primary variation="budget" text="orçamento rápido" icon="ico_budget.png" modalType="orcamento" ng-click="setAssunto('{{addslashes($product['titulo'])}}')" />
                         <x-buttons.primary variation="whatsapp" text="compre <br> pelo whatsapp" icon="ico_whatsapp-2.png" link="{{ $config['whatsapp']['link'] ?? '' }}" target="_blank" />
                     </div>
                 </div>
             </div>
-            @if (!empty($produto['inst']))
+            @if (!empty($product['inst']))
             <div class="product-description">
                 <h4>INSTRUÇÕES DE USO</h4>
-                <p>{!! nl2br($produto['inst'] ?? '') !!}</p>
+                <p>{!! nl2br($product['inst'] ?? '') !!}</p>
             </div>
             @endif
-            @if (!empty($produto['descricao-completa']))
+            @if (!empty($product['descricao-completa']))
             <div class="product-description mt-4">
                 <h4>DESCRIÇÃO</h4>
-                <p>{!! $produto['descricao-completa'] !!}</p>
+                <p>{!! $product['descricao-completa'] !!}</p>
             </div>
             @endif
         </div>

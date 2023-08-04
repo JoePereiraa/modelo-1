@@ -25,12 +25,12 @@ Route::namespace('Site')->group(function () {
     /*About Us */               Route::get(PluginController::obterUrl(SiteController::ABOUT), [AboutController::class, 'index'])->name("quem-somos");
     #
     /*Products */               Route::get(PluginController::obterUrl(SiteController::PRODUCTS) . '/{categoria?}', [ProductsController::class, 'index'])->name("produtos");
-    /*Products - Inner */       Route::get('produto/{uri}', [ProductsController::class, 'interna'])->name("produto-interna");
+    /*Products - Inner */       Route::get('produto/{uri}', [ProductsController::class, 'inner'])->name("produto-interna");
     #
     /*Doubts --*/                  Route::get(PluginController::obterUrl(SiteController::DOUBT) . '/{uri?}', [DoubtController::class, 'index'])->name("duvidas");
     #
     /*Blog */                   Route::get(PluginController::obterUrl(SiteController::BLOG) . '/{categoria?}', [BlogController::class, 'index'])->name("blog");
-    /*Blog - Inner */           Route::get('post/{uri}', [BlogController::class, 'interna'])->name("blog-interna");
+    /*Blog - Inner */           Route::get('post/{uri}', [BlogController::class, 'inner'])->name("blog-interna");
     /*Blog - Categories */      Route::get(PluginController::obterUrl(SiteController::BLOG_CATEGORIES) . '/{uri}', [BlogController::class, 'index'])->name('blog-categoria');
     #
     /*Contact Us */             Route::get(PluginController::obterUrl(SiteController::CONTACT), [ContactUsController::class, 'index'])->name("fale-conosco");

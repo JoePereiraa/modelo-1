@@ -4,11 +4,11 @@
             @foreach ($home['banner-home'] as $key => $banner)
                 <a class="item-banner"
                     @if ($key == 0 )
-                        href="{{ route('produtos-pielsana') }}"
+                        href=""
                     @elseif ($key == 1)
                         href="{{ route('produtos') }}"
                     @elseif ($key ==2)
-                        href="{{ route('cursos-e-treinamentos') }}"
+                        href="}"
                     @endif
                 >
                     {!! $helpers->gerarImg($banner['banner-desktop'], true, 'image-banner hide-mobile', false) ?? '' !!}
@@ -38,12 +38,6 @@
         <x-buttons.contact.whatsapp
             title="Chame no <strong>Whatsapp</strong>"
             icon="ico_whatsapp.png"
-        />
-        <x-buttons.primary
-            variation="budget"
-            text="seja um revendedor"
-            icon="ico_budget.png"
-            link="{{ route('revendedor') }}"
         />
         <x-buttons.primary
             text="compre no atacado"

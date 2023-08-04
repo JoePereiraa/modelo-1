@@ -7,23 +7,22 @@ use App\Http\Controllers\SiteController;
 
 class HomeController extends SiteController
 {
-    private $plugin;
-    public function setPlugin(PluginController $plugin) {
-        $this->plugin = $plugin;
+    private $homeManager;
+    public function setHomeManager(HomeManager $homeManager) {
+        $this->homeManager = $homeManager;
     }
 
     public function index() {
+        $this->setHomeManager(new HomeManager);
 
-        $this->setPlugin(new PluginController);
-
-        $home = $this->getHome();
-        $this->gerarSeo();
+        $home = $this->homeManager->getHome();
+        $this->homeManager->gerarSeo();
 
         #Extra Content
-        $products = $this->getInternalProducts();
-        $doubts = $this->getInternalDoubts();
-        $testimonies = $this->getInternalTestimonies();
-        $blog = $this->getInternalPosts();
+        $products = $this->homeManager->getInternalProducts();
+        $doubts = $this->homeManager->getInternalDoubts();
+        $testimonies = $this->homeManager->getInternalTestimonies();
+        $blog = $this->homeManager->getInternalPosts();
 
         return view('layout.home.content.home', [
             'home' => $home,
@@ -33,7 +32,14 @@ class HomeController extends SiteController
             'blog' => $blog
         ]);
     }
+}
 
+class HomeManager extends SiteController
+{
+    private $plugin;
+    public function __construct() {
+        $this->plugin = new PluginController();
+    }
     #Home
     public function getHome() {
         $this->plugin->setId(SiteController::HOME);

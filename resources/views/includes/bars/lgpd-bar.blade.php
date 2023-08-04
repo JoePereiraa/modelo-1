@@ -2,7 +2,7 @@
     <div class="row container align-items-center">
         <div class="conteudo-lgpd-in">
             <div class="txt-in d-flex">
-                <p><strong>G-MEDICAL</strong> utiliza cookies e outras tecnologias semelhantes para melhorar
+                <p><strong>Nome Do Site</strong> utiliza cookies e outras tecnologias semelhantes para melhorar
                     a sua experiência de acordo com a nossa</p>
                 <div class="txt-in__links"><a href="{{ route('politica-de-privacidade') }}">Política de Privacidade</a> e
                     <a href="{{ route('termos-de-uso') }}">Termos de Uso</a>

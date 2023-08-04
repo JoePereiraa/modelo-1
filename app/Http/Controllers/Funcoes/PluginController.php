@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\View;
 
 class PluginController extends Controller
 {
-
     public static $id;
     public static $linguagem = 1;
     public static $breadcrumb = [];
@@ -208,7 +207,6 @@ class PluginController extends Controller
             }
         }
 
-
         return $result;
     }
 
@@ -276,7 +274,6 @@ class PluginController extends Controller
 
         return $valor;
     }
-
 
     public function valorPadrao($tipo, $valor)
     {

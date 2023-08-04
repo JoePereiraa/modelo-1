@@ -8,135 +8,155 @@ use Illuminate\Http\Request;
 
 class ProductsController extends SiteController
 {
-    public function index(Request $request, $uri = '')
-    {
-        //?App raddar
-        $plugin = new PluginController();
+    private $productsManager;
+    public function setProductsManager(ProductsManager $productsManager){
+        $this->productsManager = $productsManager;
+    }
+    public function index(Request $request, $uri = '') {
+        $this->setProductsManager(new ProductsManager);
 
-        //Products
-        $plugin->setId(SiteController::PRODUCTS);
-        $page = $plugin->obterCampos();
+        $page = $this->productsManager->getPageProduct();
+        $this->productsManager->generateSeoAndBreadcrumb();
 
-        //Breadcrumb
-        $plugin->addBreadCrumb(['home', route('home')]);
-        $plugin->addBreadCrumb(['produtos', route('produtos')]);
+        list($productFilter, $currentCategory, $currentTitle) = $this->productsManager->getFilter($uri, $request);
 
-        //*Filtrer
-        $filtro = [];
-
-        //SEO
-        $this->gerarSeo(SiteController::PRODUCTS);
-
-        if (!empty($uri)) {
-            $category = $plugin->obterInterna($uri, SiteController::PRODUCTS_CATEGORIES);
-            if (!$category) return redirect()->route('produtos');
-            $filtro['category'] = $category['id'];
-            $currentCategory = $category['id'];
-            $titleCurrentCategory = $category['titulo'];
-
-            // breadcrumb
-            $plugin->addBreadCrumb([$category['titulo'], route('produtos', ['categoria' => $category['uri']])]);
-            $this->setTitle($category['titulo'], 'prepend');
-        }
-        //Category
-        $plugin->setId(SiteController::PRODUCTS_CATEGORIES);
-        $productCategories = $plugin->obterInternas([], true, 0, false, 10, 0, ['titulo', 'ASC']);
-
-        //*Search
-        if (!empty($request->busca)) {
-            $busca = $request->busca;
-            $filtro['busca'] = str_replace(' ', '%', $busca);
-            // $titulo = 'Busca por: ' . $busca;
-        }
-        //Current Page
         $currentPage = !empty($request->page) ? (int)$request->page : 1;
-
-        //Inner
-        $plugin->setId(SiteController::PRODUCTS);
-        $products = $plugin->obterInternas($filtro, true, 0, true, 8, $currentPage, ['titulo', 'ASC']);
-
-        //*Extra content
-        #Home
-        $plugin->setId(SiteController::HOME);
-        $home = $plugin->obterCampos();
+        $productCategories = $this->productsManager->getProductCategories();
+        $products = $this->productsManager->getInternalProducts($productFilter, $currentPage);
 
         return view('layout.pages.products.content.index', [
             'page' => $page,
             'products' => $products,
-            'category' => !empty($category) ? $category : [],
+            'category' => $category ?? [],
             'productCategories' => $productCategories,
-            'home' => $home,
             'currentCategory' => $currentCategory ?? '',
-            'busca' => $busca ?? '',
-            'searchProducts' => !empty($request->busca) ? $request->busca : '',
-            'titleCurrentCategory' => $titleCurrentCategory ?? 'Todas os Produtos',
+            'currentTitle' => $currentTitle ?? 'Todos os Produtos',
         ]);
     }
 
-    public function interna($uri = '')
-    {
-        //?App raddar
-        $plugin = new PluginController();
+    public function inner($uri = '') {
+        $this->setProductsManager(new ProductsManager);
 
-        //Breadcrumb
-        $plugin->addBreadCrumb(['home', route('home')]);
-        $plugin->addBreadCrumb(['produtos', route('produtos')]);
+        list($product, $category) = $this->productsManager->getProductInternal($uri);
+        $page = $this->productsManager->getPageProduct();
+        $productCategories = $this->productsManager->getProductCategories();
+        $products = $this->productsManager->getInternalProducts([], false);
 
-        if (empty($uri)) {
-            return redirect()->route('produtos');
-        }
+        $this->productsManager->generateSeoAndBreadcrumbInner($product);
+        $this->productsManager->getFilterInner($product);
 
-        $produto = $plugin->obterInterna($uri, SiteController::PRODUCTS);
-        if (empty($produto)) return redirect()->route('produtos');
-
-        //*Filter
-        $filtro = [];
-
-        if (!empty($produto['category'])) {
-            $category = $plugin->obterInterna($produto['category'], SiteController::PRODUCTS_CATEGORIES, 'id');
-            if (!empty($category)) {
-                $plugin->addBreadCrumb([$category['titulo'], route('produtos', ['categoria' => $category['uri']])]);
-                $filtro['category'] = $category['id'];
-            }
-            $currentCategory = $category['id'];
-        }
-
-        if (empty($produto['gallery'])) $produto['gallery'] = [];
-        if (!empty($produto['image'])) {
-            array_unshift($produto['gallery'], $produto['image']);
-        }
-
-        //Products
-        $plugin->setId(SiteController::PRODUCTS);
-        $page = $plugin->obterCampos();
-
-        //Relations
-        $plugin->setId(SiteController::PRODUCTS);
-        $productsRelations = $plugin->obterInternas([], true, 10, false, 10, 0, ['titulo', 'ASC'], true, $produto['id']);
-
-        //Inner
-        $plugin->setId(SiteController::PRODUCTS);
-        $produtos = $plugin->obterInternas($filtro, true, 0, true, 30, ['titulo', 'ASC']);
-
-        //SEO
-        $this->gerarSeo($produto['id']);
-
-        //Breadcrumb
-        $plugin->addBreadCrumb([$produto['titulo'], route('produto-interna', ['uri' => $produto['uri']])]);
-
-        //*Extra content
-        $plugin->setId(SiteController::HOME);
-        $home = $plugin->obterCampos();
+        #Extra content
+        $productsRelations = $this->productsManager->relatetProducts($product);
 
         return view('layout.pages.products.content.inner', [
-            'produto' => $produto,
-            'productsRelations' => $productsRelations,
+            'product' => $product,
             'page' => $page,
-            'home' => $home,
-            'categoria' => $categoria ?? [],
+            'products' => $products,
+            'productCategories' => $productCategories,
+            'category' => $category ?? [],
             'currentCategory' => $currentCategory ?? '',
-            'produtos' => $produtos,
             'subcategoria' => $subcategoria ?? [],
+            'productsRelations' => $productsRelations,
         ]);
+    }
+}
+class ProductsManager extends SiteController
+{
+    private $plugin;
+    public function __construct() {
+        $this->plugin = new PluginController();
+    }
+
+    #Product page
+    public function getPageProduct() {
+        $this->plugin->setId(SiteController::PRODUCTS);
+        return $this->plugin->obterCampos();
+    }
+
+    #Products
+    public function getInternalProducts($productFilter, $currentPage) {
+        $this->plugin->setId(SiteController::PRODUCTS);
+        return $this->plugin->obterInternas($productFilter, true, 0, true, 8, $currentPage, ['titulo', 'ASC']);
+    }
+
+    #Product
+    public function getProductInternal($uri) {
+        if (empty($uri)) return redirect()->route('produtos');
+
+        $product = $this->plugin->obterInterna($uri, SiteController::PRODUCTS);
+        if (empty($product)) return redirect()->route('produtos');
+
+        if (!empty($product['category'])) {
+            $category = $this->plugin->obterInterna($product['category'],SiteController::PRODUCTS_CATEGORIES, 'id');
+        }
+
+        return [$product, $category];
+    }
+
+    #Categories
+    public function getProductCategories() {
+        $this->plugin->setId(SiteController::PRODUCTS_CATEGORIES);
+        return $this->plugin->obterInternas([], true, 0, false, 10, 0, ['titulo', 'ASC']);
+    }
+
+    #Filter
+    public function getFilter($uri, $request) {
+        $productFilter = [];
+        $currentCategory = null;
+        $currentTitle = null;
+
+        if (!empty($uri)) {
+            $category = $this->plugin->obterInterna($uri, SiteController::PRODUCTS_CATEGORIES);
+            if (!$category) return redirect()->route('produtos');
+            $productFilter['category'] = $category['id'];
+            $currentCategory = $category['id'];
+            $currentTitle = $category['titulo'];
+
+            #Breadcrumb
+            $this->plugin->addBreadCrumb([$category['titulo'], route('produtos', ['categoria' => $category['uri']])]);
+            $this->setTitle($category['titulo'], 'prepend');
+        }
+        #Search
+        if (!empty($request->busca)) {
+            $search = $request->busca;
+            $productFilter['busca'] = str_replace(' ', '%', $search);
+            $currentTitle = 'Busca por: ' . $search;
+        }
+
+        return [$productFilter, $currentCategory, $currentTitle];
+    }
+    public function getFilterInner($product) {
+        $productFilter = [];
+        $currentCategory = null;
+
+        if (!empty($product['category'])) {
+            $category = $this->plugin->obterInterna($product['category'], SiteController::PRODUCTS_CATEGORIES, 'id');
+            if (!empty($category)) {
+                $this->plugin->addBreadCrumb([$category['titulo'], route('produtos', ['categoria' => $category['uri']])]);
+                $productFilter['category'] = $category['id'];
+                $currentCategory = $category['id'];
+            }
+        }
+        $this->plugin->addBreadCrumb([$product['titulo'], 'UTF-8', route('produto-interna', ['uri' => $product['uri']])]);
+
+        return [$productFilter, $currentCategory];
+    }
+
+    #SEO and Breadcrumb
+    public function generateSeoAndBreadcrumb() {
+        $this->gerarSeo(SiteController::PRODUCTS);
+        $this->plugin->addBreadCrumb(['home', route('home')]);
+        $this->plugin->addBreadCrumb(['produtos', route('produtos')]);
+    }
+    public function generateSeoAndBreadcrumbInner($product) {
+        $this->gerarSeo($product['id']);
+        $this->plugin->addBreadCrumb(['home', route('home')]);
+        $this->plugin->addBreadCrumb(['produtos', route('produtos')]);
+    }
+
+    #Related
+    public function relatetProducts($product) {
+        $this->plugin->setId(SiteController::PRODUCTS);
+        return $this->plugin->obterInternas([], true, 10, false, 10, 0, ['titulo', 'ASC'], true, $product['id']);
     }
 }
