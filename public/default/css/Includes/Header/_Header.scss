@@ -1,166 +1,190 @@
 //IMPORTS\\//\\//\\//\\//\\//\\//\\||\\
 @use '../../settings' as *;
-//\\//\\//\\//\\//\\//\\//\\//\//\\||\\
 
-section.header {
-    padding: $spacing-6 0 0;
+header {
+    top: 0;
+    left: 0;
+    position: sticky;
+    z-index: 10;
+    @include transitionDelay($slower);
 
-    .content {
-        max-width: 1496px;
-        display: flex;
-        align-items: center;
-        column-gap: $spacing-25;
-        margin-bottom: $spacing-6;
-
-        .aside {
-            display: flex;
-            flex-direction: column;
-
-            &__contact {
-                display: flex;
-                align-items: center;
-                column-gap: $spacing-5;
-
-                .icons {
-                    display: flex;
-                    column-gap: $spacing-5;
-                    align-items: center;
-                }
-            }
-            &__search {
-                margin-top: $spacing-4;
-                display: flex;
-                align-items: center;
-                column-gap: $spacing-5;
-            }
-        }
-    }
-
-    &.menu-fixed {
-        &.fixed {
-            display: block;
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 10;
-            padding: 0;
-            // border-bottom: $borderWidth-thin solid $primary;
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            backdrop-filter: blur(11px);
-            -webkit-backdrop-filter: blur(11px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-            border-radius: 0 0 $borderRadius-md $borderRadius-md;
-            .navegation {
-                padding: 20px 0;
-            }
-            .content {
-                display: none;
-                // transform: scale(0.8);
-                // margin-bottom: $spacing-2;
-            }
-        }
-    }
-
-    @include breakpoint(mobile) {
-        padding: $spacing-3 0;
+    section.header {
+        width: 100%;
+        background-color: $white;
+        border-bottom: $borderWidth-thin solid #9B9B9B;
+        padding: $spacing-6 0;
+        @include transitionDelay($slower);
 
         .content {
+            max-width: 1602px;
             display: flex;
-            flex-wrap: wrap;
             align-items: center;
             justify-content: center;
-            row-gap: $spacing-2;
-            margin-bottom: 0;
+            column-gap: $spacing-18;
 
-            .form-search {
-                order: 2;
-            }
-            .aside {
-                order: 2;
-                row-gap: $spacing-3;
-
-                &__search {
-                    order: 1;
-                }
-                &__contact {
-                    order: 2;
-                    flex-wrap: wrap;
-                    row-gap: $spacing-3;
-                    column-gap: $spacing-5;
-                    justify-content: center;
+            .logo {
+                img {
+                    @include imageContent(
+                        $width: 264px,
+                        $height: 128px,
+                        $fit: contain
+                    );
+                    @include transitionDelay();
                 }
             }
-            .menu-top {
-                order: 1;
-                width: 100%;
-                // order: 1;
+
+            &__aside {
+                .contact {
+                    display: flex;
+                    column-gap: $spacing-7;
+
+                    &--icons {
+                        display: flex;
+                        align-items: center;
+                        column-gap: $spacing-4;
+                    }
+                }
+                hr {
+                    margin: $spacing-4;
+                }
+            }
+        }
+
+        @include breakpoint (mobile) {
+            height: auto;
+            border-bottom: none;
+            padding: $spacing-2 0;
+            background: rgba(6, 6, 6, 0.80);
+
+            .content {
+                height: auto;
                 display: flex;
+                flex-wrap: wrap;
                 align-items: center;
                 justify-content: space-between;
+                row-gap: $spacing-2;
+                padding: $spacing-2 $spacing-3;
 
-                .logo {
-                    width: 100px;
-                }
-                a {
-                    display: block;
-                    color: white;
+                .menu-top {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding-inline: $spacing-3;
 
-                    i {
-                        color: white;
+                    .logo {
+                        width: 115px;
                     }
-                    &:nth-child(1) {
-                        position: relative;
-                        z-index: 2;
-                        transition: all 0.5s ease-in-out;
-                        i {
-                            color: $primary;
-                        }
+                    #hamburguer {
+                        display: block;
+                        color: white;
 
-                        &.active {
+                        i {
+                            color: white;
+                        }
+                        &:nth-child(1) {
+                            position: relative;
+                            z-index: 2;
+                            transition: all 0.5s ease-in-out;
                             i {
-                                transform: rotate(90deg);
+                                color: $primary;
+                            }
+
+                            &.active {
+                                i {
+                                    transform: rotate(90deg);
+                                }
                             }
                         }
-                    }
-                    .line {
-                        fill: none;
-                        stroke: $secondary;
-                        stroke-width: 6;
-                        transition:
-                            stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+                        .line {
+                            fill: none;
+                            stroke:$white;
+                            stroke-width: 6;
+                            transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
                             stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
-                    }
-                    .line1 {
-                        stroke-dasharray: 60 207;
-                        stroke-width: 6;
-                    }
-                    .line2 {
-                        stroke-dasharray: 60 60;
-                        stroke-width: 6;
-                    }
-                    .line3 {
-                        stroke-dasharray: 60 207;
-                        stroke-width: 6;
-                    }
-
-                    &.active {
+                        }
                         .line1 {
-                            stroke-dasharray: 90 207;
-                            stroke-dashoffset: -134;
+                            stroke-dasharray: 60 207;
                             stroke-width: 6;
                         }
                         .line2 {
-                            stroke-dasharray: 1 60;
-                            stroke-dashoffset: -30;
+                            stroke-dasharray: 60 60;
                             stroke-width: 6;
                         }
                         .line3 {
-                            stroke-dasharray: 90 207;
-                            stroke-dashoffset: -134;
+                            stroke-dasharray: 60 207;
                             stroke-width: 6;
                         }
+
+                        &.active {
+                            .line1 {
+                                stroke-dasharray: 90 207;
+                                stroke-dashoffset: -134;
+                                stroke-width: 6;
+                            }
+                            .line2 {
+                                stroke-dasharray: 1 60;
+                                stroke-dashoffset: -30;
+                                stroke-width: 6;
+                            }
+                            .line3 {
+                                stroke-dasharray: 90 207;
+                                stroke-dashoffset: -134;
+                                stroke-width: 6;
+                            }
+                        }}
+                }
+                .btns-mobile {
+                    width: 100%;
+                    &--contact {
+                        display: flex;
+                        justify-content: space-between;
+
+                        .btn-whatsapp,
+                        .btn-telephone {
+                            padding: 0.75rem;
+                            border-radius: $borderRadius-sm;
+                        }
+                    }
+                    .btn-primary {
+                        margin: $spacing-4 auto 0;
+                        height: 48px;
+                        border-radius: $borderRadius-sm;
+                    }
+                }
+            }
+        }
+    }
+    &.fixed {
+        section.header {
+            padding: $spacing-4 0;
+
+            .content {
+                column-gap: $spacing-18;
+
+                .logo {
+                   img {
+                        @include imageContent(
+                            $width: 200px,
+                            $height: 100px,
+                            $fit: contain
+                        );
+                   }
+                }
+
+                &__aside {
+                    .contact {
+                        display: flex;
+                        column-gap: $spacing-7;
+
+                        &--icons {
+                            display: flex;
+                            align-items: center;
+                            column-gap: $spacing-4;
+                        }
+                    }
+                    hr {
+                        margin: $spacing-4;
                     }
                 }
             }

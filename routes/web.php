@@ -22,7 +22,7 @@
 Route::namespace('Site')->group(function () {
     #PAGES
     /*Home - Not change*/       Route::get('/', [HomeController::class, 'index'])->name('home');
-    /*About Us */               Route::get(PluginController::obterUrl(SiteController::ABOUT), [AboutController::class, 'index'])->name("quem-somos");
+    /*About Us */               Route::get(PluginController::obterUrl(SiteController::ABOUT), [AboutController::class, 'index'])->name("sobre-nos");
     #
     /*Products */               Route::get(PluginController::obterUrl(SiteController::PRODUCTS) . '/{categoria?}', [ProductsController::class, 'index'])->name("produtos");
     /*Products - Inner */       Route::get('produto/{uri}', [ProductsController::class, 'inner'])->name("produto-interna");

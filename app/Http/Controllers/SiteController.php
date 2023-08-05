@@ -20,33 +20,35 @@ class SiteController extends BaseSiteController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     #CONST PAGES
-    public const HOME =             60;  #Homepage
-    public const ABOUT =            109; #About
-    public const PRODUCTS =         127; #Products
-    public const DOUBT =            119; #DOubts
-    public const CART =             678; #Cart
-    public const BLOG =             30;  #Blog
-    public const TESTIMONIES =      62;  #Testimonies
-    public const CONTACT =          74;  #Contact Us
-    public const POLICY =           51;  #Polity
-    public const TERMS =            52;  #Terms
-    public const CHANGES =          667; #Changes
-    public const WORK =             680; #WORK
-    #CATEGORIES
-    public const PRODUCTS_CATEGORIES = 669;
-    public const BLOG_CATEGORIES = 26;
-    public const DOUBT_CATEGORIES = 704;
+    public const HOME = 60;                 #Homepage
+    public const ABOUT = 109;               #About
+    public const PRODUCTS = 127;            #Products
+    public const DOUBT = 119;               #Doubts
+    public const CART = 678;                #Cart
+    public const BLOG = 30;                 #Blog
+    public const TESTIMONIES = 62;          #Testimonies
+    public const CONTACT = 74;              #Contact Us
+    public const POLICY = 51;               #Polity
+    public const TERMS = 52;                #Terms
+    public const CHANGES = 667;             #Changes
+    public const WORK = 680;                #Work
+    public const PRODUCTS_CATEGORIES = 669; #Products - Categories
+    public const BLOG_CATEGORIES = 26;      #Blog - Categories
+    public const DOUBT_CATEGORIES = 704;    #Doubt - Categories
 
     public static $config;
     public static $linguagem = 1;
     public static $seo;
     public static $menu;
-    public static $productCategories;
-    public static $blogCategories;
-
+    public static $links;
 
     public function __construct()
     {
+        self::$config = $this->getConfig();
+        self::$config['menu'] = $this->gerarMenu();
+        self::$config['links'] = $this->generateLinks();
+        self::$config['rota-atual'] = URL::current();
+        HelpersController::$config = self::$config;
 
         // Cart
         $this->middleware(function ($request, $next) {
@@ -55,29 +57,61 @@ class SiteController extends BaseSiteController
             return $next($request);
         });
 
-        //Product Categories
-        $plugin = new PluginController(SiteController::PRODUCTS_CATEGORIES);
-        self::$productCategories = $plugin->obterInternas([], false, 0, 10, 0, ['titulo', 'ASC']);
-
-        //Blog Categories
-        $plugin = new PluginController(SiteController::BLOG_CATEGORIES);
-        self::$blogCategories = $plugin->obterInternas([], false, 0, 10, 0, ['titulo', 'ASC']);
-
-        /*  Config e Menu   */
-        self::$config = $this->getConfig();
-        self::$config['menu'] = $this->gerarMenu();
-        self::$config['rota-atual'] = URL::current();
-
         if (!empty(self::$config['unidades'])) {
             View::share('unidade', current(self::$config['unidades']));
         }
 
-        HelpersController::$config = self::$config;
-
-        View::share('productCategories', self::$productCategories);
-        View::share('blogCategories', self::$blogCategories);
         View::share('config', self::$config);
         View::share('helpers', new HelpersController());
+    }
+
+    public function gerarMenu()
+    {
+        $menuTitles = [
+            'Início',
+            'Produtos',
+            'Dúvidas',
+            'Blog',
+            'Sobre Nos',
+            'Contato',
+            'Trabalhe Conosco'
+        ];
+        $menuRoutes = [
+            route('home'),
+            route('produtos'),
+            route('duvidas'),
+            route('blog'),
+            route('sobre-nos'),
+            route('fale-conosco'),
+            route('trabalhe-conosco')
+        ];
+        $menu = array_map(function($title, $url){
+            return [
+                'title' => $title,
+                'url' =>  $url,
+            ];
+        }, $menuTitles, $menuRoutes);
+
+        return $menu;
+    }
+    public function generateLinks()
+    {
+        $linksTitles = [
+            'Termos de Uso',
+            'Politica de Privacidade',
+        ];
+        $linksRoutes = [
+            route('termos-de-uso'),
+            route('politica-de-privacidade')
+        ];
+        $links = array_map(function($title, $url){
+            return [
+                'title' => $title,
+                'url' =>  $url,
+            ];
+        }, $linksTitles, $linksRoutes);
+
+        return $links;
     }
 
     public function filtrarArray($array = [], $coluna = '', $valor = '', $resetKeys = false)
@@ -113,36 +147,6 @@ class SiteController extends BaseSiteController
         //        exit;
 
         return $confArray;
-    }
-
-    public function gerarMenu()
-    {
-        $menuTitles = [
-            'Início',
-            'Produtos',
-            'Dúvidas',
-            'Blog',
-            'Sobre a G-medical',
-            'Contato',
-            'Trabalhe Conosco'
-        ];
-        $menuRoutes = [
-            route('home'),
-            route('produtos'),
-            route('duvidas'),
-            route('blog'),
-            route('quem-somos'),
-            route('fale-conosco'),
-            route('trabalhe-conosco')
-        ];
-        $menu = array_map(function($title, $url){
-            return [
-                'title' => $title,
-                'url' =>  $url,
-            ];
-        }, $menuTitles, $menuRoutes);
-
-        return $menu;
     }
 
     public function gerarSeo(int $page_id = null)

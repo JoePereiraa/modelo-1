@@ -1,7 +1,7 @@
 <section class="footer-copyright {{$class ?? ''}}">
     <x-layout.container class="big">
         <div class="copyright">
-            <h5>{{date('Y')}}© {{ mb_strtoupper('G-MEDICAL') }}</h5>
+            <h5>{{date('Y')}}© {{ mb_strtoupper('Nome do Site') }}</h5>
             <div @class(['terms'])>
                 <ul>
                     <li class="@if(Route::current()->getName() == 'termos-de-uso') active @endif">

@@ -21,7 +21,7 @@ class AboutController extends SiteController
         #SEO | Breadcrumb
         $this->gerarSeo(SiteController::ABOUT);
         $this->plugin->addBreadCrumb(['home', route('home')]);
-        $this->plugin->addBreadCrumb(['G-Medical', route('quem-somos')]);
+        $this->plugin->addBreadCrumb(['sobre nos', route('sobre-nos')]);
 
         return view('layout.pages.about.content.index', [
             'page' => $page,

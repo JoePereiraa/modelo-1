@@ -20,7 +20,6 @@ if ($modeDb == 'production') {
     $password = "";
 }
 
-
 /*
  *  Após efetuar as alterações de DB, execute o comando:
  *  php artisan config:cache
